@@ -4,6 +4,11 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
   <title>TITAN STRENGTH</title>
+  <link rel="apple-touch-icon" href="images/logo.png"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="TITAN"/>
+  <link rel="manifest" href="manifest.json"/>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@600&family=Heebo:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -241,7 +246,7 @@
       </div>
     </div>
     <div style="margin-top:24px">
-      <p style="font-family:'Inter',sans-serif;font-size:12px;letter-spacing:0.2em;font-weight:700;color:rgba(197,201,172,0.4);text-transform:uppercase">Elite Performance Protocol v4.0.2</p>
+      <p style="font-family:'Inter',sans-serif;font-size:12px;letter-spacing:0.2em;font-weight:700;color:rgba(197,201,172,0.4);text-transform:uppercase">Version 1.0</p>
     </div>
   </footer>
 </div>
@@ -274,25 +279,6 @@
     </section>
   </main>
 
-  <!-- Bottom Nav -->
-  <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-gutter bg-surface-container border-t border-surface-variant">
-    <a id="nav-btn-training" onclick="navigate('home'); return false;" class="flex flex-col items-center justify-center text-primary-fixed font-bold gap-1 cursor-pointer" href="#">
-      <span id="nav-icon-training" class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
-      <span data-i18n="navTraining" class="font-label-caps text-label-caps uppercase">אימון</span>
-    </a>
-    <a id="nav-btn-programs" onclick="navigate('home'); return false;" class="flex flex-col items-center justify-center text-on-surface-variant gap-1 cursor-pointer" href="#">
-      <span id="nav-icon-programs" class="material-symbols-outlined">format_list_bulleted</span>
-      <span data-i18n="navPrograms" class="font-label-caps text-label-caps uppercase">תוכניות</span>
-    </a>
-    <a id="nav-btn-music" onclick="navigate('music'); return false;" class="flex flex-col items-center justify-center text-on-surface-variant gap-1 cursor-pointer" href="#">
-      <span id="nav-icon-music" class="material-symbols-outlined">music_note</span>
-      <span data-i18n="navMusic" class="font-label-caps text-label-caps uppercase">מוזיקה</span>
-    </a>
-    <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 opacity-40 pointer-events-none" href="#">
-      <span class="material-symbols-outlined">person</span>
-      <span data-i18n="navProfile" class="font-label-caps text-label-caps uppercase">פרופיל</span>
-    </a>
-  </nav>
 </div>
 
 
@@ -786,6 +772,28 @@
 
 <!-- Hidden audio player -->
 <audio id="music-player"></audio>
+
+<!-- ══════════════════════════════════════════════════════════
+     GLOBAL BOTTOM NAV
+═══════════════════════════════════════════════════════════ -->
+<nav id="global-bottom-nav" class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-gutter bg-surface-container border-t border-surface-variant">
+  <a id="nav-btn-training" onclick="navigate('home'); return false;" class="flex flex-col items-center justify-center text-primary-fixed font-bold gap-1 cursor-pointer" href="#">
+    <span id="nav-icon-training" class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+    <span data-i18n="navTraining" class="font-label-caps text-label-caps uppercase">אימון</span>
+  </a>
+  <a id="nav-btn-programs" onclick="navigate('home'); return false;" class="flex flex-col items-center justify-center text-on-surface-variant gap-1 cursor-pointer" href="#">
+    <span id="nav-icon-programs" class="material-symbols-outlined">format_list_bulleted</span>
+    <span data-i18n="navPrograms" class="font-label-caps text-label-caps uppercase">תוכניות</span>
+  </a>
+  <a id="nav-btn-music" onclick="navigate('music'); return false;" class="flex flex-col items-center justify-center text-on-surface-variant gap-1 cursor-pointer" href="#">
+    <span id="nav-icon-music" class="material-symbols-outlined">music_note</span>
+    <span data-i18n="navMusic" class="font-label-caps text-label-caps uppercase">מוזיקה</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 opacity-40 pointer-events-none" href="#">
+    <span class="material-symbols-outlined">person</span>
+    <span data-i18n="navProfile" class="font-label-caps text-label-caps uppercase">פרופיל</span>
+  </a>
+</nav>
 
 <!-- Scripts -->
 <script src="workouts.js"></script>

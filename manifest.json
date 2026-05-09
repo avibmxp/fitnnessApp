@@ -1,0 +1,15 @@
+{
+  "name": "TITAN STRENGTH",
+  "short_name": "TITAN",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#131313",
+  "theme_color": "#131313",
+  "icons": [
+    {
+      "src": "images/logo.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}

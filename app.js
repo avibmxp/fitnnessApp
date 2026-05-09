@@ -413,6 +413,9 @@ function navigate(screen) {
   window.scrollTo(0, 0);
   updateBottomNav(screen);
   if (screen === 'music') renderMusicScreen();
+  const hideNav = screen === 'workout' || screen === 'finish';
+  const nav = document.getElementById('global-bottom-nav');
+  if (nav) nav.classList.toggle('hidden', hideNav);
 }
 
 function updateBottomNav(screen) {
@@ -1136,21 +1139,15 @@ function playSong(index) {
   const audio = document.getElementById('music-player');
   state.currentSongIndex = index;
   const song = SONGS[index];
-  if (song.audioUrl && song.audioUrl !== '#') {
-    audio.src = song.audioUrl;
-    audio.play().catch(() => {});
-    state.isPlaying = true;
-  } else {
-    state.isPlaying = false;
-  }
+  audio.src = song.audioUrl;
+  audio.play().catch(() => {});
+  state.isPlaying = true;
   renderMusicScreen();
 }
 
 function togglePlay() {
   const audio = document.getElementById('music-player');
   if (state.currentSongIndex < 0) return;
-  const song = SONGS[state.currentSongIndex];
-  if (!song.audioUrl || song.audioUrl === '#') return;
   if (state.isPlaying) {
     audio.pause();
     state.isPlaying = false;

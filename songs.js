@@ -6,7 +6,7 @@ const SONGS = [
     genre: 'Hip-Hop / Trap',
     duration: 195,
     coverUnsplashId: 'photo-1571019613454-1cb2f99b2d8b',
-    audioUrl: '#'
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ const SONGS = [
     genre: 'Heavy Metal',
     duration: 213,
     coverUnsplashId: 'photo-1526478806334-5fd488fcaabc',
-    audioUrl: '#'
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ const SONGS = [
     genre: 'EDM / Big Room',
     duration: 228,
     coverUnsplashId: 'photo-1574169208507-84376144848b',
-    audioUrl: '#'
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ const SONGS = [
     genre: 'Rap / Motivational',
     duration: 187,
     coverUnsplashId: 'photo-1534438327276-14e5300c3a48',
-    audioUrl: '#'
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3'
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ const SONGS = [
     genre: 'Drum & Bass',
     duration: 241,
     coverUnsplashId: 'photo-1517836357463-d25dfeac3438',
-    audioUrl: '#'
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3'
   },
   {
     id: 6,
@@ -51,7 +51,7 @@ const SONGS = [
     genre: 'Rock / Anthemic',
     duration: 204,
     coverUnsplashId: 'photo-1470225620780-dba8ba36b745',
-    audioUrl: '#'
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3'
   },
   {
     id: 7,
@@ -60,7 +60,7 @@ const SONGS = [
     genre: 'Trap / Dark',
     duration: 178,
     coverUnsplashId: 'photo-1519389950473-47ba0277781c',
-    audioUrl: '#'
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3'
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ const SONGS = [
     genre: 'Electronic / House',
     duration: 220,
     coverUnsplashId: 'photo-1508700115892-45ecd05ae2ad',
-    audioUrl: '#'
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3'
   },
   {
     id: 9,
@@ -78,15 +78,15 @@ const SONGS = [
     genre: 'Hip-Hop / Old School',
     duration: 198,
     coverUnsplashId: 'photo-1485579149621-3123dd979885',
-    audioUrl: '#'
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3'
   },
   {
     id: 10,
-    title: 'Titan\'s March',
+    title: "Titan's March",
     titleHe: 'צעדת הטיטאן',
     genre: 'Orchestral / Epic',
     duration: 256,
     coverUnsplashId: 'photo-1594623930572-300a3011d9ae',
-    audioUrl: '#'
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3'
   }
 ];
