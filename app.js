@@ -370,7 +370,8 @@ const UI = {
   backToPrograms:'חזרה לתוכניות',
   howToPerform:'כיצד לבצע', keyTips:'טיפים מרכזיים', muscleActivation:'הפעלת שרירים',
   set:(n)=>`סט ${n}`, bw:'משקל גוף',
-  navTraining:'אימון', navPrograms:'תוכניות', navProgress:'התקדמות', navProfile:'פרופיל',
+  navTraining:'אימון', navPrograms:'תוכניות', navMusic:'מוזיקה', navProfile:'פרופיל',
+  nowPlaying:'מתנגן עכשיו', tapToPlay:'לחץ על שיר להפעלה',
   welcomeLabel:'ברוך הבא', chooseLevelTitle:'בחר את הרמה שלך',
   selectedLevelLabel:'רמה נבחרת',
   backToLevels:'חזרה לרמות',
@@ -392,7 +393,9 @@ const state = {
   sessionTimerInterval: null,
   restTimerInterval: null,
   restTimeRemaining: 0,
-  restTimerActive: false
+  restTimerActive: false,
+  currentSongIndex: -1,
+  isPlaying: false
 };
 
 function applyStaticTranslations() {
@@ -409,21 +412,28 @@ function navigate(screen) {
   state.currentScreen = screen;
   window.scrollTo(0, 0);
   updateBottomNav(screen);
+  if (screen === 'music') renderMusicScreen();
 }
 
 function updateBottomNav(screen) {
   const trainingBtn = document.getElementById('nav-btn-training');
-  const programsBtn = document.getElementById('nav-btn-programs');
   const trainingIcon = document.getElementById('nav-icon-training');
-  const programsIcon = document.getElementById('nav-icon-programs');
+  const musicBtn = document.getElementById('nav-btn-music');
+  const musicIcon = document.getElementById('nav-icon-music');
   if (!trainingBtn) return;
 
   const onHome = screen === 'home';
+  const onMusic = screen === 'music';
+
   trainingBtn.className = 'flex flex-col items-center justify-center gap-1 cursor-pointer font-bold ' +
     (onHome ? 'text-primary-fixed' : 'text-on-surface-variant');
   trainingIcon.style.fontVariationSettings = onHome ? "'FILL' 1" : "'FILL' 0";
-  programsBtn.className = 'flex flex-col items-center justify-center gap-1 cursor-pointer ' +
-    'text-on-surface-variant';
+
+  if (musicBtn) {
+    musicBtn.className = 'flex flex-col items-center justify-center gap-1 cursor-pointer ' +
+      (onMusic ? 'text-primary-fixed font-bold' : 'text-on-surface-variant');
+    if (musicIcon) musicIcon.style.fontVariationSettings = onMusic ? "'FILL' 1" : "'FILL' 0";
+  }
 }
 
 // ─── Screen 1: Home ───────────────────────────────────────────────────────────
@@ -1065,11 +1075,129 @@ function runSplashScreen(onDone) {
   requestAnimationFrame(tick);
 }
 
+// ─── Music Player ─────────────────────────────────────────────────────────────
+function songCoverUrl(song) {
+  return `https://images.unsplash.com/${song.coverUnsplashId}?w=600&h=340&fit=crop&q=80`;
+}
+
+function fmtTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${s.toString().padStart(2, '0')}`;
+}
+
+function renderMusicScreen() {
+  const list = document.getElementById('music-song-list');
+  if (!list) return;
+  list.innerHTML = SONGS.map((song, i) => {
+    const active = i === state.currentSongIndex;
+    return `
+      <div onclick="playSong(${i})"
+        class="flex items-center gap-md p-md rounded-xl cursor-pointer active:scale-95 transition-transform
+          ${active ? 'glass-card border border-primary-fixed active-glow' : 'glass-card'}">
+        <img src="${songCoverUrl(song)}" alt=""
+          class="w-14 h-14 rounded-lg object-cover flex-shrink-0" />
+        <div class="flex flex-col gap-xs flex-1 min-w-0">
+          <span class="font-h3 text-base font-bold text-on-surface truncate">${song.titleHe}</span>
+          <span class="font-label-caps text-label-caps uppercase text-primary-fixed">${song.genre}</span>
+        </div>
+        <div class="flex items-center gap-sm flex-shrink-0">
+          ${active && state.isPlaying
+            ? '<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings:\'FILL\' 1">equalizer</span>'
+            : `<span class="text-on-surface-variant text-xs" style="font-family:'JetBrains Mono',monospace">${fmtTime(song.duration)}</span>`
+          }
+        </div>
+      </div>`;
+  }).join('');
+
+  if (state.currentSongIndex >= 0) {
+    updateNowPlayingCard();
+  }
+}
+
+function updateNowPlayingCard() {
+  const song = SONGS[state.currentSongIndex];
+  if (!song) return;
+  document.getElementById('music-cover').src = songCoverUrl(song);
+  document.getElementById('music-now-title').textContent = song.titleHe;
+  document.getElementById('music-now-genre').textContent = song.genre;
+  document.getElementById('music-total-time').textContent = fmtTime(song.duration);
+  document.getElementById('music-now-empty').classList.add('hidden');
+  document.getElementById('music-now-info').classList.remove('hidden');
+  document.getElementById('music-now-info').classList.add('flex');
+  document.getElementById('music-progress-wrap').classList.remove('hidden');
+  document.getElementById('music-progress-wrap').classList.add('flex');
+  document.getElementById('music-controls').classList.remove('hidden');
+  document.getElementById('music-controls').classList.add('flex');
+  document.getElementById('music-play-icon').textContent = state.isPlaying ? 'pause' : 'play_arrow';
+}
+
+function playSong(index) {
+  const audio = document.getElementById('music-player');
+  state.currentSongIndex = index;
+  const song = SONGS[index];
+  if (song.audioUrl && song.audioUrl !== '#') {
+    audio.src = song.audioUrl;
+    audio.play().catch(() => {});
+    state.isPlaying = true;
+  } else {
+    state.isPlaying = false;
+  }
+  renderMusicScreen();
+}
+
+function togglePlay() {
+  const audio = document.getElementById('music-player');
+  if (state.currentSongIndex < 0) return;
+  const song = SONGS[state.currentSongIndex];
+  if (!song.audioUrl || song.audioUrl === '#') return;
+  if (state.isPlaying) {
+    audio.pause();
+    state.isPlaying = false;
+  } else {
+    audio.play().catch(() => {});
+    state.isPlaying = true;
+  }
+  document.getElementById('music-play-icon').textContent = state.isPlaying ? 'pause' : 'play_arrow';
+  renderMusicScreen();
+}
+
+function nextSong() {
+  const next = (state.currentSongIndex + 1) % SONGS.length;
+  playSong(next);
+}
+
+function prevSong() {
+  const prev = (state.currentSongIndex - 1 + SONGS.length) % SONGS.length;
+  playSong(prev);
+}
+
+function seekAudio(value) {
+  const audio = document.getElementById('music-player');
+  if (audio.duration) audio.currentTime = (value / 100) * audio.duration;
+}
+
+function onAudioTimeUpdate() {
+  const audio = document.getElementById('music-player');
+  if (!audio.duration) return;
+  const pct = (audio.currentTime / audio.duration) * 100;
+  const bar = document.getElementById('music-progress-bar');
+  const cur = document.getElementById('music-current-time');
+  if (bar) bar.value = pct;
+  if (cur) cur.textContent = fmtTime(audio.currentTime);
+}
+
 // ─── Init ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderHomeScreen();
   navigate('home');
   runSplashScreen(() => {});
+
+  const audio = document.getElementById('music-player');
+  if (audio) {
+    audio.addEventListener('timeupdate', onAudioTimeUpdate);
+    audio.addEventListener('ended', nextSong);
+  }
 
   // Horizontal scroll via mouse wheel on filter slider (legacy — kept for safety)
   const slider = document.querySelector('.filter-slider');

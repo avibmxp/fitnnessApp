@@ -207,8 +207,8 @@
   <main style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;max-width:480px;padding:0 20px">
     <!-- Logo icon -->
     <div style="margin-bottom:32px;position:relative">
-      <div style="width:128px;height:128px;border-radius:9999px;border:4px solid #c3f400;display:flex;align-items:center;justify-content:center">
-        <span class="material-symbols-outlined" style="color:#c3f400;font-size:64px;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48">fitness_center</span>
+      <div style="width:128px;height:128px;display:flex;align-items:center;justify-content:center">
+        <img src="images/logo.png" alt="Titan Strength Logo" style="width:128px;height:128px;object-fit:contain;mix-blend-mode:screen"/>
       </div>
       <div style="position:absolute;inset:0;background:#c3f400;filter:blur(48px);opacity:0.15;border-radius:9999px"></div>
     </div>
@@ -253,7 +253,7 @@
 
   <!-- Header -->
   <header class="bg-surface fixed top-0 w-full z-50">
-    <div class="flex justify-between items-center w-full px-margin h-16 max-w-7xl mx-auto">
+    <div class="flex justify-center items-center w-full px-margin h-16 max-w-7xl mx-auto">
       <div class="font-h2 text-h2 font-black text-primary-fixed italic tracking-tighter">TITAN STRENGTH</div>
     </div>
   </header>
@@ -263,7 +263,7 @@
     <section class="mt-lg">
       <div class="flex flex-col gap-base mb-lg">
         <span data-i18n="currentFocus" class="font-label-caps text-label-caps uppercase text-primary-fixed">פוקוס נוכחי</span>
-        <h1 data-i18n="elitePrograms" class="font-h1 text-h1 uppercase">תוכניות אלייט</h1>
+        <h1 data-i18n="elitePrograms" class="font-h1 uppercase" style="font-size:clamp(1.5rem,6vw,2.5rem)">תוכניות אלייט</h1>
       </div>
 
       <!-- Level filter / back button — managed by JS -->
@@ -284,9 +284,9 @@
       <span id="nav-icon-programs" class="material-symbols-outlined">format_list_bulleted</span>
       <span data-i18n="navPrograms" class="font-label-caps text-label-caps uppercase">תוכניות</span>
     </a>
-    <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 opacity-40 pointer-events-none" href="#">
-      <span class="material-symbols-outlined">insights</span>
-      <span data-i18n="navProgress" class="font-label-caps text-label-caps uppercase">התקדמות</span>
+    <a id="nav-btn-music" onclick="navigate('music'); return false;" class="flex flex-col items-center justify-center text-on-surface-variant gap-1 cursor-pointer" href="#">
+      <span id="nav-icon-music" class="material-symbols-outlined">music_note</span>
+      <span data-i18n="navMusic" class="font-label-caps text-label-caps uppercase">מוזיקה</span>
     </a>
     <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 opacity-40 pointer-events-none" href="#">
       <span class="material-symbols-outlined">person</span>
@@ -731,8 +731,65 @@
   </div>
 </div>
 
+<!-- ══════════════════════════════════════════════════════════
+     SCREEN 5 — MUSIC
+═══════════════════════════════════════════════════════════ -->
+<div id="screen-music" class="screen hidden pb-28">
+  <!-- Header -->
+  <header class="bg-surface sticky top-0 z-50 flex justify-center items-center w-full h-16">
+    <div class="font-h2 text-h2 font-black text-primary-fixed italic tracking-tighter" data-i18n="navMusic">מוזיקה</div>
+  </header>
+
+  <div class="px-margin pt-lg max-w-lg mx-auto flex flex-col gap-lg">
+
+    <!-- Now Playing Card -->
+    <div class="glass-card rounded-2xl overflow-hidden">
+      <div class="relative w-full" style="padding-top:56.25%">
+        <img id="music-cover" src="" alt="" class="absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute inset-0 hero-gradient"></div>
+      </div>
+      <div class="p-lg flex flex-col gap-md">
+        <div id="music-now-empty" class="text-center text-on-surface-variant font-body-md py-sm" data-i18n="tapToPlay">לחץ על שיר להפעלה</div>
+        <div id="music-now-info" class="hidden flex-col gap-xs">
+          <span id="music-now-title" class="font-h3 text-h3 text-on-surface leading-tight"></span>
+          <span id="music-now-genre" class="font-label-caps text-label-caps uppercase text-primary-fixed"></span>
+        </div>
+        <div id="music-progress-wrap" class="hidden flex-col gap-xs">
+          <input id="music-progress-bar" type="range" min="0" max="100" value="0"
+            oninput="seekAudio(this.value)"
+            class="w-full h-1 rounded-full appearance-none cursor-pointer"
+            style="accent-color:#c3f400" />
+          <div class="flex justify-between">
+            <span id="music-current-time" class="text-xs text-on-surface-variant" style="font-family:'JetBrains Mono',monospace">0:00</span>
+            <span id="music-total-time" class="text-xs text-on-surface-variant" style="font-family:'JetBrains Mono',monospace">0:00</span>
+          </div>
+        </div>
+        <div id="music-controls" class="hidden justify-center items-center gap-xl">
+          <button onclick="prevSong()" class="text-on-surface-variant active:text-primary-fixed active:scale-90 transition-all">
+            <span class="material-symbols-outlined" style="font-size:36px">skip_previous</span>
+          </button>
+          <button onclick="togglePlay()" class="w-16 h-16 rounded-full bg-primary-fixed text-on-primary flex items-center justify-center active:scale-90 transition-transform">
+            <span id="music-play-icon" class="material-symbols-outlined" style="font-size:32px;font-variation-settings:'FILL' 1">play_arrow</span>
+          </button>
+          <button onclick="nextSong()" class="text-on-surface-variant active:text-primary-fixed active:scale-90 transition-all">
+            <span class="material-symbols-outlined" style="font-size:36px">skip_next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Song List -->
+    <div id="music-song-list" class="flex flex-col gap-xs pb-lg"></div>
+
+  </div>
+</div>
+
+<!-- Hidden audio player -->
+<audio id="music-player"></audio>
+
 <!-- Scripts -->
 <script src="workouts.js"></script>
+<script src="songs.js"></script>
 <script src="app.js"></script>
 
 </body>
