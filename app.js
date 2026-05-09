@@ -341,88 +341,46 @@ const EXERCISE_TIPS = {
   },
 };
 
-// ─── UI Translations ──────────────────────────────────────────────────────────
+// ─── UI Strings ───────────────────────────────────────────────────────────────
 const UI = {
-  en: {
-    allPlans:'All Plans', strength:'Strength', hypertrophy:'Hypertrophy', cardio:'Cardio', core:'Core',
-    currentFocus:'CURRENT FOCUS', elitePrograms:'ELITE PROGRAMS',
-    viewPlan:'VIEW PLAN',
-    weeklyProgress:'WEEKLY PROGRESS', daysComplete:'Days Complete', daysRemaining:'Days Remaining',
-    bodyAreas:'Body Areas', musclesWorked:'Muscles Worked',
-    front:'Front', back:'Back', targeted:'Targeted', notTargeted:'Not targeted',
-    theProtocol:'The Protocol', tapForGuide:'(tap for form guide)',
-    startWorkout:'Start Workout',
-    duration:'Duration', min:'Min', exercises:'Exercises',
-    exerciseOf:(n,t)=>`EXERCISE ${n} OF ${t}`,
-    currentTarget:'Current Target', previous:'Previous',
-    weightKg:'WEIGHT (KG)', addedWeightKg:'ADDED WEIGHT (KG)', reps:'REPS',
-    completeSet:'COMPLETE SET', setLog:'Set Log',
-    ofDone:(a,b)=>`${a} of ${b} Done`,
-    noSetsYet:'No sets completed yet',
-    restTimer:'Rest Timer', skip:'SKIP', sessionActive:'Session Active',
-    nextExercise:'NEXT EXERCISE', finishWorkout:'FINISH WORKOUT',
-    endEarly:'END WORKOUT EARLY',
-    endTitle:'End Workout?',
-    endMsg:'Your progress will be saved. Are you sure you want to end this session early?',
-    cancel:'Cancel', end:'End',
-    workoutComplete:'Workout Complete', time:'Time', setsDone:'Sets Done',
-    backToPrograms:'Back to Programs',
-    howToPerform:'How To Perform', keyTips:'Key Tips', muscleActivation:'Muscle Activation',
-    set:(n)=>`SET ${n}`, bw:'BW',
-    navTraining:'Training', navPrograms:'Programs', navProgress:'Progress', navProfile:'Profile',
-    welcomeLabel:'WELCOME', chooseLevelTitle:'CHOOSE YOUR LEVEL',
-    selectedLevelLabel:'SELECTED LEVEL',
-    backToLevels:'Back to Levels',
-    switchLang:'🇮🇱',
-  },
-  he: {
-    allPlans:'כל האימונים', strength:'כוח', hypertrophy:'היפרטרופיה', cardio:'קרדיו', core:'ליבה',
-    currentFocus:'פוקוס נוכחי', elitePrograms:'תוכניות אלייט',
-    viewPlan:'צפה בתוכנית',
-    weeklyProgress:'התקדמות שבועית', daysComplete:'ימים הושלמו', daysRemaining:'ימים נותרו',
-    bodyAreas:'אזורי גוף', musclesWorked:'שרירים מופעלים',
-    front:'קדמי', back:'אחורי', targeted:'מופעל', notTargeted:'לא מופעל',
-    theProtocol:'הפרוטוקול', tapForGuide:'(לחץ להנחיות ביצוע)',
-    startWorkout:'התחל אימון',
-    duration:'משך', min:'דק\'', exercises:'תרגילים',
-    exerciseOf:(n,total)=>`תרגיל ${n} מתוך ${total}`,
-    currentTarget:'יעד נוכחי', previous:'קודם',
-    weightKg:'משקל (ק"ג)', addedWeightKg:'משקל מוסף (ק"ג)', reps:'חזרות',
-    completeSet:'השלם סט', setLog:'יומן סטים',
-    ofDone:(a,b)=>`${a} מתוך ${b} הושלמו`,
-    noSetsYet:'טרם הושלמו סטים',
-    restTimer:'טיימר מנוחה', skip:'דלג', sessionActive:'אימון פעיל',
-    nextExercise:'תרגיל הבא', finishWorkout:'סיים אימון',
-    endEarly:'סיים אימון מוקדם',
-    endTitle:'לסיים את האימון?',
-    endMsg:'ההתקדמות שלך תישמר. האם אתה בטוח שברצונך לסיים?',
-    cancel:'ביטול', end:'סיים',
-    workoutComplete:'האימון הושלם!', time:'זמן', setsDone:'סטים',
-    backToPrograms:'חזרה לתוכניות',
-    howToPerform:'כיצד לבצע', keyTips:'טיפים מרכזיים', muscleActivation:'הפעלת שרירים',
-    set:(n)=>`סט ${n}`, bw:'משקל גוף',
-    navTraining:'אימון', navPrograms:'תוכניות', navProgress:'התקדמות', navProfile:'פרופיל',
-    welcomeLabel:'ברוך הבא', chooseLevelTitle:'בחר את הרמה שלך',
-    selectedLevelLabel:'רמה נבחרת',
-    backToLevels:'חזרה לרמות',
-    switchLang:'🇺🇸',
-  }
+  allPlans:'כל האימונים', strength:'כוח', hypertrophy:'היפרטרופיה', cardio:'קרדיו', core:'ליבה',
+  currentFocus:'פוקוס נוכחי', elitePrograms:'תוכניות אלייט',
+  viewPlan:'צפה בתוכנית',
+  weeklyProgress:'התקדמות שבועית', daysComplete:'ימים הושלמו', daysRemaining:'ימים נותרו',
+  workoutDetails:'פרטי האימון',
+  bodyAreas:'אזורי גוף', musclesWorked:'שרירים מופעלים',
+  front:'קדמי', back:'אחורי', targeted:'מופעל', notTargeted:'לא מופעל',
+  theProtocol:'הפרוטוקול', tapForGuide:'(לחץ להנחיות ביצוע)',
+  startWorkout:'התחל אימון',
+  duration:'משך', min:'דק\'', exercises:'תרגילים',
+  exerciseOf:(n,total)=>`תרגיל ${n} מתוך ${total}`,
+  currentTarget:'יעד נוכחי', previous:'קודם',
+  weightKg:'משקל (ק"ג)', addedWeightKg:'משקל מוסף (ק"ג)', reps:'חזרות',
+  completeSet:'השלם סט', setLog:'יומן סטים',
+  ofDone:(a,b)=>`${a} מתוך ${b} הושלמו`,
+  noSetsYet:'טרם הושלמו סטים',
+  restTimer:'טיימר מנוחה', skip:'דלג', sessionActive:'אימון פעיל',
+  nextExercise:'תרגיל הבא', finishWorkout:'סיים אימון',
+  endEarly:'סיים אימון מוקדם',
+  endTitle:'לסיים את האימון?',
+  endMsg:'ההתקדמות שלך תישמר. האם אתה בטוח שברצונך לסיים?',
+  cancel:'ביטול', end:'סיים',
+  workoutComplete:'האימון הושלם!', time:'זמן', setsDone:'סטים',
+  backToPrograms:'חזרה לתוכניות',
+  howToPerform:'כיצד לבצע', keyTips:'טיפים מרכזיים', muscleActivation:'הפעלת שרירים',
+  set:(n)=>`סט ${n}`, bw:'משקל גוף',
+  navTraining:'אימון', navPrograms:'תוכניות', navProgress:'התקדמות', navProfile:'פרופיל',
+  welcomeLabel:'ברוך הבא', chooseLevelTitle:'בחר את הרמה שלך',
+  selectedLevelLabel:'רמה נבחרת',
+  backToLevels:'חזרה לרמות',
 };
 
-function t(key) {
-  const l = state.lang;
-  return (UI[l] && UI[l][key] !== undefined) ? UI[l][key] : (UI.en[key] || key);
-}
-function tW(workout, field) {
-  return state.lang === 'he' ? (workout[field+'He'] || workout[field]) : workout[field];
-}
-function tEx(exercise, field) {
-  return state.lang === 'he' ? (exercise[field+'He'] || exercise[field]) : exercise[field];
-}
+const t = key => UI[key] ?? key;
+const tW = (w, f) => w[f+'He'] || w[f];
+const tEx = (ex, f) => ex[f+'He'] || ex[f];
 
 // ─── App State ────────────────────────────────────────────────────────────────
 const state = {
-  lang: 'en',
   currentScreen: 'home',
   activeLevel: null,
   currentWorkout: null,
@@ -435,28 +393,6 @@ const state = {
   restTimeRemaining: 0,
   restTimerActive: false
 };
-
-// ─── Language toggle ──────────────────────────────────────────────────────────
-function toggleLang() {
-  state.lang = state.lang === 'en' ? 'he' : 'en';
-  const isHe = state.lang === 'he';
-  document.documentElement.setAttribute('dir', isHe ? 'rtl' : 'ltr');
-  document.documentElement.setAttribute('lang', state.lang);
-  // Update all language buttons
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.textContent = t('switchLang');
-  });
-  // Re-render active screen
-  if (state.currentScreen === 'home') {
-    applyStaticTranslations();
-    renderHomeScreen();
-  } else if (state.currentScreen === 'overview') {
-    applyStaticTranslations();
-    renderPlanOverview();
-  } else if (state.currentScreen === 'workout') {
-    renderActiveWorkout();
-  }
-}
 
 function applyStaticTranslations() {
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -484,7 +420,6 @@ function renderHomeScreen() {
 }
 
 function renderLevelSelection() {
-  const isHe = state.lang === 'he';
   document.querySelector('[data-i18n="currentFocus"]').textContent = t('welcomeLabel');
   document.querySelector('[data-i18n="elitePrograms"]').textContent = t('chooseLevelTitle');
   document.getElementById('filter-area').innerHTML = '';
@@ -495,28 +430,28 @@ function renderLevelSelection() {
   const levels = [
     {
       key: 'Beginner',
-      label: isHe ? 'מתחיל' : 'Beginner',
-      prog:  isHe ? 'FBW — גוף מלא' : 'FBW — Full Body',
-      freq:  isHe ? '2–3 פעמים בשבוע' : '2–3× per week',
-      desc:  isHe ? 'אימון גוף מלא אחד. מושלם לבניית בסיס חזק.' : 'One comprehensive full-body session. Perfect for building a solid foundation.',
+      label: 'מתחיל',
+      prog:  'FBW — גוף מלא',
+      freq:  '2–3 פעמים בשבוע',
+      desc:  'אימון גוף מלא אחד. מושלם לבניית בסיס חזק.',
       badge: 'text-primary-fixed bg-primary-fixed/10 border border-primary-fixed/30',
       arrow: 'text-primary-fixed',
     },
     {
       key: 'Intermediate',
-      label: isHe ? 'בינוני' : 'Intermediate',
-      prog:  isHe ? 'חלוקת AB — עליון / תחתון' : 'AB Split — Upper / Lower',
-      freq:  isHe ? '4 פעמים בשבוע' : '4× per week',
-      desc:  isHe ? 'שני אימונים משלימים — פלג גוף עליון ותחתון.' : 'Two complementary sessions — upper and lower body.',
+      label: 'בינוני',
+      prog:  'חלוקת AB — עליון / תחתון',
+      freq:  '4 פעמים בשבוע',
+      desc:  'שני אימונים משלימים — פלג גוף עליון ותחתון.',
       badge: 'text-secondary bg-secondary-container/10 border border-secondary-container/40',
       arrow: 'text-secondary',
     },
     {
       key: 'Advanced',
-      label: isHe ? 'מקצוען' : 'Advanced',
-      prog:  isHe ? 'חלוקת PPL — דחיפה / משיכה / רגליים' : 'PPL — Push / Pull / Legs',
-      freq:  isHe ? '5–6 פעמים בשבוע' : '5–6× per week',
-      desc:  isHe ? 'ווליום גבוה, עצימות מקסימלית. לספורטאים מנוסים בלבד.' : 'High volume, maximum intensity. For experienced athletes only.',
+      label: 'מקצוען',
+      prog:  'חלוקת PPL — דחיפה / משיכה / רגליים',
+      freq:  '5–6 פעמים בשבוע',
+      desc:  'ווליום גבוה, עצימות מקסימלית. לספורטאים מנוסים בלבד.',
       badge: 'text-error bg-error/10 border border-error/30',
       arrow: 'text-error',
     },
@@ -524,14 +459,14 @@ function renderLevelSelection() {
 
   grid.innerHTML = levels.map(lv => {
     const count = WORKOUTS.filter(w => w.level === lv.key).length;
-    const wLabel = isHe ? `${count} ${count === 1 ? 'אימון' : 'אימונים'}` : `${count} ${count === 1 ? 'workout' : 'workouts'}`;
+    const wLabel = `${count} ${count === 1 ? 'אימון' : 'אימונים'}`;
     return `
       <div onclick="setLevel('${lv.key}')" class="gradient-card p-xl rounded-xl border border-surface-container-highest cursor-pointer active:scale-[0.98] transition-transform hover:border-primary-fixed/30">
         <div class="flex justify-between items-start mb-md">
           <h2 class="font-h2 text-h2 uppercase text-primary">${lv.label}</h2>
           <span class="font-label-caps text-label-caps px-sm py-base rounded-full uppercase ${lv.badge}">${lv.freq}</span>
         </div>
-        <p class="font-label-caps text-label-caps text-primary-fixed uppercase tracking-wider mb-sm ltr-content">${lv.prog}</p>
+        <p class="font-label-caps text-label-caps text-primary-fixed uppercase tracking-wider mb-sm">${lv.prog}</p>
         <p class="text-on-surface-variant font-body-md mb-lg">${lv.desc}</p>
         <div class="flex items-center justify-between">
           <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">${wLabel}</span>
@@ -543,8 +478,7 @@ function renderLevelSelection() {
 }
 
 function renderWorkoutGrid() {
-  const isHe = state.lang === 'he';
-  const levelLabel = { Beginner: isHe?'מתחיל':'Beginner', Intermediate: isHe?'בינוני':'Intermediate', Advanced: isHe?'מקצוען':'Advanced' }[state.activeLevel];
+  const levelLabel = { Beginner: 'מתחיל', Intermediate: 'בינוני', Advanced: 'מקצוען' }[state.activeLevel];
 
   document.querySelector('[data-i18n="currentFocus"]').textContent = t('selectedLevelLabel');
   document.querySelector('[data-i18n="elitePrograms"]').textContent = levelLabel.toUpperCase();
@@ -573,7 +507,7 @@ function renderWorkoutGrid() {
         <h3 class="font-h3 text-h3 uppercase mb-xs" dir="auto">${tW(workout,'name')}</h3>
         <p class="text-on-surface-variant text-sm mb-sm" dir="auto">${tW(workout,'description')}</p>
         <div class="flex flex-wrap gap-xs mb-lg">
-          ${(isHe ? workout.bodyAreasHe : workout.bodyAreas).map(a =>
+          ${workout.bodyAreasHe.map(a =>
             `<span class="bg-surface-container text-on-surface-variant px-xs py-[2px] rounded text-[10px] font-bold uppercase tracking-widest border border-surface-container-highest">${a}</span>`
           ).join('')}
         </div>
@@ -609,6 +543,7 @@ function renderPlanOverview() {
   document.getElementById('overview-duration-unit').textContent = t('min');
   document.getElementById('overview-exercise-count').textContent = String(w.exercises.length).padStart(2,'0');
   document.getElementById('overview-exercise-label').textContent = t('exercises');
+  document.getElementById('section-details').textContent = t('workoutDetails');
   document.getElementById('section-body-areas').textContent = t('bodyAreas');
   document.getElementById('section-muscles').textContent = t('musclesWorked');
   document.getElementById('section-protocol').textContent = t('theProtocol');
@@ -618,7 +553,15 @@ function renderPlanOverview() {
   document.getElementById('label-targeted').textContent = t('targeted');
   document.getElementById('label-not-targeted').textContent = t('notTargeted');
 
-  const areas = state.lang === 'he' ? w.bodyAreasHe : w.bodyAreas;
+  const details = state.lang === 'he' ? (w.detailsHe || w.details || []) : (w.details || []);
+  document.getElementById('overview-details').innerHTML = details.map(d =>
+    `<li class="flex items-start gap-sm">
+      <span class="text-primary-fixed mt-[2px] flex-shrink-0">▸</span>
+      <span class="font-body-md text-on-surface-variant">${d}</span>
+    </li>`
+  ).join('');
+
+  const areas = w.bodyAreasHe;
   document.getElementById('overview-areas').innerHTML = areas.map(a =>
     `<span class="bg-primary-fixed/10 text-primary-fixed border border-primary-fixed/30 px-sm py-base rounded-full font-label-caps text-label-caps uppercase">${a}</span>`
   ).join('');
@@ -642,7 +585,10 @@ function renderPlanOverview() {
         </div>
         <div class="text-right flex-shrink-0">
           <span class="font-data-display text-h3 text-primary-fixed whitespace-nowrap">${ex.sets} <span class="text-body-md font-body-md text-on-surface-variant">×</span> ${ex.reps}</span>
-          <div class="font-label-caps text-label-caps text-on-surface-variant uppercase mt-xs">${formatRestTime(ex.restSeconds)}</div>
+          <div class="flex items-center justify-end gap-xs mt-xs text-on-surface-variant">
+            <span class="material-symbols-outlined" style="font-size:13px;">timer</span>
+            <span class="font-label-caps text-label-caps uppercase">מנוחה ${formatRestTime(ex.restSeconds)}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -679,13 +625,13 @@ function highlightBodyMap(muscleGroups, prefix) {
 const EXERCISE_IMG = {
   // Barbell pressing
   'Barbell Bench Press':       'photo-1571019614242-c5c5dee9f50b',
-  'Dumbbell Incline Press':    'photo-1534438327276-14e5300c3a48',
+  'Dumbbell Incline Press':    'photo-1692372372344-41aed374b848',
   'Push-ups':                  'photo-1598971457999-ca4ef48a9a71',
   'Cable Flyes':               'photo-1540497077202-7c8a3999166f',
   'Chest Flyes':               'photo-1534438327276-14e5300c3a48',
   // Shoulders
   'Barbell Overhead Press':    'photo-1583454110551-21f2fa2afe61',
-  'Dumbbell Shoulder Press':   'photo-1583454110551-21f2fa2afe61',
+  'Dumbbell Shoulder Press':   'photo-1674834726923-3ba828d37846',
   'Lateral Raises':            'photo-1603287681836-b174ce5074c2',
   'Dumbbell Lateral Raises':   'photo-1603287681836-b174ce5074c2',
   'Face Pulls':                'photo-1540497077202-7c8a3999166f',
@@ -696,7 +642,7 @@ const EXERCISE_IMG = {
   'Pallof Press':              'photo-1540497077202-7c8a3999166f',
   // Back / Pull
   'Pull-ups':                  'photo-1581009137042-c552e485697a',
-  'Lat Pulldown':              'photo-1581009137042-c552e485697a',
+  'Lat Pulldown':              'photo-1745329532611-03818982ed31',
   'Barbell Bent-Over Row':     'photo-1517836357463-d25dfeac3438',
   'Dumbbell Rows':             'photo-1534438327276-14e5300c3a48',
   'Chest Supported Row':       'photo-1540497077202-7c8a3999166f',
@@ -731,7 +677,7 @@ const EXERCISE_IMG = {
   'Russian Twists':            'photo-1571945153237-4929e783af4a',
   'Hanging Leg Raises':        'photo-1581009137042-c552e485697a',
   // New exercises
-  'Goblet Squat':                  'photo-1566241440091-ec10de8db2e1',
+  'Goblet Squat':                  'photo-1603503363848-6952525df449',
   'Incline Barbell Bench Press':   'photo-1571019614242-c5c5dee9f50b',
   'Machine Chest Press':           'photo-1571019614242-c5c5dee9f50b',
   'Skull Crushers':                'photo-1540497077202-7c8a3999166f',
@@ -767,7 +713,35 @@ const GROUP_IMG = {
   'Cardio':          'photo-1549060279-7e168fcee0c2',
 };
 
+const LOCAL_EXERCISE_IMG = {
+  // Beginner
+  'Goblet Squat':                'images/golbat_squat.png',
+  'Dumbbell Incline Press':      'images/dumbbell_incline_press.png',
+  'Lat Pulldown':                'images/lat_pulldown.png',
+  'Dumbbell Shoulder Press':     'images/dumbbell_shoulders_press.png',
+  'Plank Hold':                  'images/plank_hold.png',
+  // Intermediate — Day A
+  'Barbell Bench Press':         'images/barbell_bench_press.png',
+  'Barbell Bent-Over Row':       'images/barbell_bent_over_row.png',
+  'Cable Flyes':                 'images/cable_flyes.png',
+  'Lateral Raises':              'images/lateral_raises.png',
+  'Barbell Curls':               'images/barbell_curls.png',
+  'Tricep Rope Pushdown':        'images/tricep_rope_pushdown.png',
+  // Intermediate — Day B
+  'Romanian Deadlift':           'images/romanian_deadlift.png',
+  'Bulgarian Split Squats':      'images/bulgarian_split_squats.png',
+  'Leg Curls':                   'images/leg_curls.png',
+  'Calf Raises':                 'images/calf_raises.png',
+  'Weighted Cable Crunches':     'images/weighted_cable_crunches.png',
+  // Advanced — Push Day
+  'Incline Barbell Bench Press': 'images/incline_barbell_bench_press.png',
+  'Barbell Overhead Press':      'images/barbell_overhead_press.png',
+  'Machine Chest Press':         'images/machine_chest_press.png',
+  'Skull Crushers':              'images/skull_crushers.png',
+};
+
 function exImgUrl(name, muscleGroup, w, h) {
+  if (LOCAL_EXERCISE_IMG[name]) return LOCAL_EXERCISE_IMG[name];
   const id = EXERCISE_IMG[name] || GROUP_IMG[muscleGroup] || 'photo-1534438327276-14e5300c3a48';
   return `https://images.unsplash.com/${id}?w=${w||600}&h=${h||320}&fit=crop&q=80&auto=format`;
 }
@@ -805,9 +779,8 @@ function openExerciseModal(exerciseIndex) {
   document.getElementById('modal-label-front').textContent = t('front');
   document.getElementById('modal-label-back').textContent = t('back');
   if (info) {
-    const isHe = state.lang === 'he';
-    const howSteps = (isHe && info.howHe) ? info.howHe : info.how;
-    const tipsList  = (isHe && info.tipsHe) ? info.tipsHe : info.tips;
+    const howSteps = info.howHe || info.how;
+    const tipsList  = info.tipsHe || info.tips;
     document.getElementById('modal-how').innerHTML = howSteps.map((s,i) =>
       `<div class="flex gap-sm items-start"><span class="w-6 h-6 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">${i+1}</span><span class="text-on-surface text-sm">${s}</span></div>`
     ).join('');
@@ -815,7 +788,7 @@ function openExerciseModal(exerciseIndex) {
       `<div class="flex gap-xs items-start"><span class="material-symbols-outlined text-primary-fixed flex-shrink-0" style="font-size:16px;font-variation-settings:'FILL' 1;">bolt</span><span class="text-on-surface-variant text-sm">${tip}</span></div>`
     ).join('');
   } else {
-    const fallback = state.lang === 'he' ? 'בצע עם טכניקה מבוקרת וטווח תנועה מלא.' : 'Perform with controlled form and full range of motion.';
+    const fallback = 'בצע עם טכניקה מבוקרת וטווח תנועה מלא.';
     document.getElementById('modal-how').innerHTML = `<p class="text-on-surface-variant text-sm">${fallback}</p>`;
     document.getElementById('modal-tips').innerHTML = '';
   }

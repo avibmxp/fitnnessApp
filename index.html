@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html class="dark" lang="he" dir="rtl">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
@@ -135,40 +135,29 @@
       stroke: #c3f400 !important;
       animation: muscle-pulse 2s ease-in-out infinite;
     }
-    /* Hebrew / RTL font override */
-    [dir="rtl"] *:not(.material-symbols-outlined) {
+    /* Fonts */
+    *:not(.material-symbols-outlined) {
       font-family: 'Heebo', 'Inter', sans-serif !important;
     }
-    [dir="rtl"] .material-symbols-outlined {
+    .material-symbols-outlined {
       font-family: 'Material Symbols Outlined' !important;
     }
-    [dir="rtl"] .font-h1, [dir="rtl"] h1,
-    [dir="rtl"] .font-h2, [dir="rtl"] h2,
-    [dir="rtl"] .font-h3, [dir="rtl"] h3 {
+    .font-h1, h1, .font-h2, h2, .font-h3, h3 {
       font-family: 'Heebo', sans-serif !important;
       letter-spacing: 0 !important;
     }
-    [dir="rtl"] .font-data-display,
-    [dir="rtl"] #rest-timer-display,
-    [dir="rtl"] #float-timer,
-    [dir="rtl"] #session-elapsed {
+    .font-data-display,
+    #rest-timer-display,
+    #float-timer,
+    #session-elapsed {
       font-family: 'JetBrains Mono', monospace !important;
     }
-    /* English content stays LTR even in RTL mode */
-    [dir="rtl"] .ltr-content {
+    /* Exercise names are in English — keep LTR */
+    .ltr-content {
       direction: ltr;
       text-align: left;
     }
-    /* Lang button flag style */
-    .lang-btn {
-      font-size: 18px;
-      line-height: 1;
-      padding: 2px 4px;
-      border: none !important;
-      background: none;
-    }
-    .lang-btn:hover { transform: scale(1.15); transition: transform 0.15s; }
-    [dir="rtl"] .rtl-mirror { transform: scaleX(-1); }
+    .rtl-mirror { transform: scaleX(-1); }
   </style>
 </head>
 <body class="bg-background text-on-surface font-body-md antialiased">
@@ -182,9 +171,6 @@
   <header class="bg-surface fixed top-0 w-full z-50">
     <div class="flex justify-between items-center w-full px-margin h-16 max-w-7xl mx-auto">
       <div class="font-h2 text-h2 font-black text-primary-fixed italic tracking-tighter">TITAN STRENGTH</div>
-      <div class="flex gap-4 items-center">
-        <button onclick="toggleLang()" class="lang-btn cursor-pointer" title="Switch language">🇮🇱</button>
-      </div>
     </div>
   </header>
 
@@ -192,8 +178,8 @@
     <!-- Hero -->
     <section class="mt-lg">
       <div class="flex flex-col gap-base mb-lg">
-        <span data-i18n="currentFocus" class="font-label-caps text-label-caps uppercase text-primary-fixed">CURRENT FOCUS</span>
-        <h1 data-i18n="elitePrograms" class="font-h1 text-h1 uppercase">ELITE PROGRAMS</h1>
+        <span data-i18n="currentFocus" class="font-label-caps text-label-caps uppercase text-primary-fixed">פוקוס נוכחי</span>
+        <h1 data-i18n="elitePrograms" class="font-h1 text-h1 uppercase">תוכניות אלייט</h1>
       </div>
 
       <!-- Level filter / back button — managed by JS -->
@@ -208,19 +194,19 @@
   <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-gutter bg-surface-container border-t border-surface-variant">
     <a class="flex flex-col items-center justify-center text-primary-fixed font-bold gap-1" href="#">
       <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
-      <span data-i18n="navTraining" class="font-label-caps text-label-caps uppercase">Training</span>
+      <span data-i18n="navTraining" class="font-label-caps text-label-caps uppercase">אימון</span>
     </a>
     <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1" href="#">
       <span class="material-symbols-outlined">format_list_bulleted</span>
-      <span data-i18n="navPrograms" class="font-label-caps text-label-caps uppercase">Programs</span>
+      <span data-i18n="navPrograms" class="font-label-caps text-label-caps uppercase">תוכניות</span>
     </a>
     <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1" href="#">
       <span class="material-symbols-outlined">insights</span>
-      <span data-i18n="navProgress" class="font-label-caps text-label-caps uppercase">Progress</span>
+      <span data-i18n="navProgress" class="font-label-caps text-label-caps uppercase">התקדמות</span>
     </a>
     <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1" href="#">
       <span class="material-symbols-outlined">person</span>
-      <span data-i18n="navProfile" class="font-label-caps text-label-caps uppercase">Profile</span>
+      <span data-i18n="navProfile" class="font-label-caps text-label-caps uppercase">פרופיל</span>
     </a>
   </nav>
 </div>
@@ -238,9 +224,6 @@
         <span class="material-symbols-outlined rtl-mirror">arrow_back</span>
       </button>
       <span class="font-h2 text-h2 font-black text-primary-fixed italic tracking-tighter">TITAN STRENGTH</span>
-    </div>
-    <div class="flex items-center gap-md">
-      <button onclick="toggleLang()" class="lang-btn cursor-pointer" title="Switch language">🇮🇱</button>
     </div>
   </header>
 
@@ -263,8 +246,8 @@
     <!-- Stats -->
     <div class="grid grid-cols-2 gap-md">
       <div class="glass-card p-md rounded-xl flex flex-col gap-xs">
-        <span data-i18n="duration" class="text-on-surface-variant font-label-caps text-label-caps uppercase">Duration</span>
-        <span class="font-data-display text-data-display text-primary-fixed"><span id="overview-duration">—</span><span id="overview-duration-unit" class="text-h3 font-h3 ml-1 uppercase">Min</span></span>
+        <span data-i18n="duration" class="text-on-surface-variant font-label-caps text-label-caps uppercase">משך</span>
+        <span class="font-data-display text-data-display text-primary-fixed"><span id="overview-duration">—</span><span id="overview-duration-unit" class="text-h3 font-h3 mr-1 uppercase">דק'</span></span>
       </div>
       <div class="glass-card p-md rounded-xl flex flex-col gap-xs">
         <span id="overview-exercise-label" class="text-on-surface-variant font-label-caps text-label-caps uppercase">Exercises</span>
@@ -272,14 +255,20 @@
       </div>
     </div>
 
+    <!-- Workout Details -->
+    <div class="glass-card rounded-xl p-md space-y-sm">
+      <h3 id="section-details" class="font-h3 text-h3 uppercase text-primary border-r-4 border-primary-fixed pr-md mb-md">פרטי האימון</h3>
+      <ul id="overview-details" class="space-y-sm"></ul>
+    </div>
+
     <!-- Muscle Map -->
     <div>
-      <h3 class="font-h3 text-h3 uppercase text-primary border-l-4 border-primary-fixed pl-md mb-md"><span id="section-muscles">Muscles Worked</span></h3>
+      <h3 class="font-h3 text-h3 uppercase text-primary border-r-4 border-primary-fixed pr-md mb-md"><span id="section-muscles">שרירים מופעלים</span></h3>
       <div class="glass-card rounded-xl p-md">
         <div class="flex gap-md justify-center">
           <!-- Front -->
           <div class="flex-1 max-w-[120px]">
-            <p id="label-front" class="font-label-caps text-label-caps text-on-surface-variant text-center mb-sm uppercase">Front</p>
+            <p id="label-front" class="font-label-caps text-label-caps text-on-surface-variant text-center mb-sm uppercase">קדמי</p>
             <svg viewBox="0 0 100 235" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
               <!-- Silhouette base -->
               <g fill="#181818" stroke="#282828" stroke-width="0.5">
@@ -313,7 +302,7 @@
           </div>
           <!-- Back -->
           <div class="flex-1 max-w-[120px]">
-            <p id="label-back-view" class="font-label-caps text-label-caps text-on-surface-variant text-center mb-sm uppercase">Back</p>
+            <p id="label-back-view" class="font-label-caps text-label-caps text-on-surface-variant text-center mb-sm uppercase">אחורי</p>
             <svg viewBox="0 0 100 235" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
               <g fill="#181818" stroke="#282828" stroke-width="0.5">
                 <ellipse cx="50" cy="14" rx="12" ry="13"/>
@@ -347,11 +336,11 @@
         <div class="flex items-center justify-center gap-lg mt-sm">
           <div class="flex items-center gap-xs">
             <div class="w-3 h-3 rounded-full bg-primary-fixed"></div>
-            <span id="label-targeted" class="font-label-caps text-label-caps text-on-surface-variant uppercase">Targeted</span>
+            <span id="label-targeted" class="font-label-caps text-label-caps text-on-surface-variant uppercase">מופעל</span>
           </div>
           <div class="flex items-center gap-xs">
             <div class="w-3 h-3 rounded-full bg-surface-container-highest border border-outline"></div>
-            <span id="label-not-targeted" class="font-label-caps text-label-caps text-on-surface-variant uppercase">Not targeted</span>
+            <span id="label-not-targeted" class="font-label-caps text-label-caps text-on-surface-variant uppercase">לא מופעל</span>
           </div>
         </div>
       </div>
@@ -359,14 +348,14 @@
 
     <!-- Body Areas -->
     <div>
-      <h3 class="font-h3 text-h3 uppercase text-primary border-l-4 border-primary-fixed pl-md mb-md"><span id="section-body-areas">Body Areas</span></h3>
+      <h3 class="font-h3 text-h3 uppercase text-primary border-r-4 border-primary-fixed pr-md mb-md"><span id="section-body-areas">אזורי גוף</span></h3>
       <div id="overview-areas" class="flex flex-wrap gap-sm"></div>
     </div>
 
     <!-- Exercise List -->
     <div class="space-y-md pb-4">
-      <h3 class="font-h3 text-h3 uppercase text-primary border-l-4 border-primary-fixed pl-md"><span id="section-protocol">The Protocol</span>
-        <span id="tap-guide-hint" class="text-on-surface-variant font-body-md text-body-md ml-sm normal-case" style="font-family:Inter">(tap for form guide)</span>
+      <h3 class="font-h3 text-h3 uppercase text-primary border-r-4 border-primary-fixed pr-md"><span id="section-protocol">הפרוטוקול</span>
+        <span id="tap-guide-hint" class="text-on-surface-variant font-body-md text-body-md mr-sm normal-case">(לחץ להנחיות ביצוע)</span>
       </h3>
       <div id="overview-exercise-list" class="space-y-md"></div>
     </div>
@@ -375,7 +364,7 @@
   <!-- Sticky Start CTA -->
   <div class="fixed bottom-0 left-0 w-full p-margin bg-gradient-to-t from-background via-background to-transparent z-[60]">
     <button onclick="startWorkout()" class="w-full h-16 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center gap-md active:scale-95 transition-transform">
-      <span data-i18n="startWorkout" class="font-h3 text-h3 uppercase italic tracking-tighter">Start Workout</span>
+      <span data-i18n="startWorkout" class="font-h3 text-h3 uppercase italic tracking-tighter">התחל אימון</span>
       <span class="material-symbols-outlined text-h3" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
     </button>
   </div>
@@ -398,7 +387,7 @@
     <!-- Exercise Header -->
     <section class="mb-xl text-center">
       <div class="flex items-center justify-between mb-xs">
-        <span id="exercise-counter" class="font-label-caps text-label-caps text-primary-fixed uppercase tracking-widest">EXERCISE 1 OF 1</span>
+        <span id="exercise-counter" class="font-label-caps text-label-caps text-primary-fixed uppercase tracking-widest">תרגיל 1 מתוך 1</span>
       </div>
       <h1 id="exercise-name" class="font-h1 text-h1 uppercase mb-base">—</h1>
       <div id="exercise-tags" class="flex justify-center gap-sm flex-wrap"></div>
@@ -408,14 +397,14 @@
     <div id="rest-timer-panel" class="hidden mb-md">
       <div class="machined-card rounded-xl border border-surface-container-highest p-lg flex flex-col items-center justify-center relative overflow-hidden active-glow">
         <div class="absolute top-0 left-0 h-1 bg-gradient-to-r from-secondary-container to-primary-container" id="rest-timer-progress" style="width: 100%"></div>
-        <span id="rest-timer-label" class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-sm">Rest Timer</span>
+        <span id="rest-timer-label" class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-sm">טיימר מנוחה</span>
         <div id="rest-timer-display" class="font-data-display text-[64px] text-primary-fixed leading-none mb-md" style="font-family: 'JetBrains Mono', monospace;">00:00</div>
         <div class="flex gap-md w-full">
           <button onclick="addRestTime(30)" class="flex-1 bg-surface-container-highest py-md rounded-lg font-h3 text-h3 text-primary-fixed border border-surface-container-highest active:scale-95 transition-all">
             +30s
           </button>
           <button id="skip-btn" onclick="skipRestTimer()" class="flex-1 border border-secondary-container text-secondary py-md rounded-lg font-h3 text-h3 active:scale-95 transition-all">
-            SKIP
+            דלג
           </button>
         </div>
       </div>
@@ -428,35 +417,35 @@
       <div class="machined-card rounded-xl border-2 border-primary-fixed p-lg">
         <div class="flex justify-between items-start mb-lg">
           <div>
-            <span id="current-target-label" class="font-label-caps text-label-caps text-primary-fixed uppercase block mb-xs">Current Target</span>
+            <span id="current-target-label" class="font-label-caps text-label-caps text-primary-fixed uppercase block mb-xs">יעד נוכחי</span>
             <h3 id="set-number" class="font-h2 text-h2 leading-none">SET 1</h3>
           </div>
           <div class="text-right">
-            <span id="previous-label" class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-xs">Previous</span>
+            <span id="previous-label" class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-xs">קודם</span>
             <div id="previous-best" class="font-data-display text-h3">—</div>
           </div>
         </div>
         <div class="grid grid-cols-2 gap-md mb-xl">
           <div class="bg-surface-container-lowest p-md rounded-lg border border-surface-container-highest">
-            <label id="weight-label" class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-xs text-[10px]">WEIGHT (KG)</label>
+            <label id="weight-label" class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-xs text-[10px]">משקל (ק"ג)</label>
             <input id="weight-input" class="bg-transparent border-none text-primary font-data-display text-data-display w-full focus:ring-0 p-0" type="number" inputmode="decimal" min="0" step="0.5" placeholder="—"/>
           </div>
           <div class="bg-surface-container-lowest p-md rounded-lg border border-surface-container-highest">
-            <label id="reps-label" class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-xs text-[10px]">REPS</label>
+            <label id="reps-label" class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-xs text-[10px]">חזרות</label>
             <input id="reps-input" class="bg-transparent border-none text-primary font-data-display text-data-display w-full focus:ring-0 p-0" type="number" inputmode="numeric" min="0" placeholder="—"/>
           </div>
         </div>
         <button id="complete-set-btn" onclick="completeSet()" class="w-full bg-primary-fixed text-on-primary-fixed py-lg rounded-lg font-h3 text-h3 uppercase active:scale-95 transition-all flex items-center justify-center gap-sm">
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-          COMPLETE SET
+          השלם סט
         </button>
       </div>
 
       <!-- Set Log -->
       <div class="bg-surface-container rounded-xl overflow-hidden border border-surface-container-highest">
         <div class="px-lg py-md border-b border-surface-container-highest flex justify-between">
-          <span id="set-log-title" class="font-label-caps text-label-caps text-on-surface-variant uppercase">Set Log</span>
-          <span id="set-log-count" class="font-label-caps text-label-caps text-on-surface-variant uppercase">0 of 0 Done</span>
+          <span id="set-log-title" class="font-label-caps text-label-caps text-on-surface-variant uppercase">יומן סטים</span>
+          <span id="set-log-count" class="font-label-caps text-label-caps text-on-surface-variant uppercase">0 מתוך 0 הושלמו</span>
         </div>
         <div id="set-log" class="divide-y divide-surface-container-highest"></div>
       </div>
@@ -466,10 +455,10 @@
     <!-- Secondary Actions -->
     <div class="mt-xl flex flex-col gap-md pb-4">
       <button id="next-exercise-btn" onclick="nextExercise()" class="hidden w-full bg-primary-fixed text-on-primary-fixed py-lg rounded-xl font-h3 text-h3 uppercase active:scale-95 transition-all">
-        NEXT EXERCISE
+        תרגיל הבא
       </button>
       <button id="end-early-btn" onclick="confirmEndWorkout()" class="w-full text-error font-label-caps text-label-caps uppercase tracking-widest py-md active:opacity-60 transition-opacity">
-        END WORKOUT EARLY
+        סיים אימון מוקדם
       </button>
     </div>
 
@@ -479,7 +468,7 @@
   <div class="fixed bottom-margin left-margin right-margin h-14 bg-surface-container-highest rounded-xl border border-primary-fixed/30 flex items-center px-lg justify-between shadow-2xl z-50" style="left:20px; right:20px; bottom:20px;">
     <div class="flex items-center gap-md">
       <div class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse"></div>
-      <span id="session-active-label" class="font-label-caps text-label-caps text-primary-fixed uppercase">Session Active</span>
+      <span id="session-active-label" class="font-label-caps text-label-caps text-primary-fixed uppercase">אימון פעיל</span>
     </div>
     <div id="float-timer" class="font-data-display text-h3 text-primary-fixed" style="font-family: 'JetBrains Mono', monospace;">00:00</div>
   </div>
@@ -487,11 +476,11 @@
   <!-- End Workout Confirmation Modal -->
   <div id="end-workout-modal" class="hidden fixed inset-0 z-[100] bg-black/70 flex items-center justify-center p-margin">
     <div class="bg-surface-container rounded-xl p-xl w-full max-w-sm border border-surface-container-highest">
-      <h3 id="end-modal-title" class="font-h3 text-h3 uppercase mb-sm">End Workout?</h3>
-      <p id="end-modal-msg" class="text-on-surface-variant mb-xl">Your progress will be saved. Are you sure you want to end this session early?</p>
+      <h3 id="end-modal-title" class="font-h3 text-h3 uppercase mb-sm">לסיים את האימון?</h3>
+      <p id="end-modal-msg" class="text-on-surface-variant mb-xl">ההתקדמות שלך תישמר. האם אתה בטוח שברצונך לסיים?</p>
       <div class="flex gap-md">
-        <button id="end-modal-cancel" onclick="cancelEndWorkout()" class="flex-1 border border-surface-container-highest text-on-surface py-sm rounded-lg font-h3 font-bold uppercase active:scale-95 transition-all">Cancel</button>
-        <button id="end-modal-confirm" onclick="endWorkoutEarly()" class="flex-1 bg-error text-on-error py-sm rounded-lg font-h3 font-bold uppercase active:scale-95 transition-all">End</button>
+        <button id="end-modal-cancel" onclick="cancelEndWorkout()" class="flex-1 border border-surface-container-highest text-on-surface py-sm rounded-lg font-h3 font-bold uppercase active:scale-95 transition-all">ביטול</button>
+        <button id="end-modal-confirm" onclick="endWorkoutEarly()" class="flex-1 bg-error text-on-error py-sm rounded-lg font-h3 font-bold uppercase active:scale-95 transition-all">סיים</button>
       </div>
     </div>
   </div>
@@ -509,24 +498,24 @@
       <span class="material-symbols-outlined text-primary-fixed" style="font-size: 48px; font-variation-settings: 'FILL' 1;">emoji_events</span>
     </div>
 
-    <span id="finish-title" class="font-label-caps text-label-caps text-primary-fixed uppercase tracking-widest block mb-sm">Workout Complete</span>
+    <span id="finish-title" class="font-label-caps text-label-caps text-primary-fixed uppercase tracking-widest block mb-sm">האימון הושלם!</span>
     <h1 id="finish-workout-name" class="font-h1 text-h1 uppercase mb-xl">—</h1>
 
     <!-- Stats -->
     <div class="grid grid-cols-2 gap-md mb-xl">
       <div class="glass-card p-md rounded-xl flex flex-col gap-xs">
-        <span id="finish-time-label" class="text-on-surface-variant font-label-caps text-label-caps uppercase">Time</span>
+        <span id="finish-time-label" class="text-on-surface-variant font-label-caps text-label-caps uppercase">זמן</span>
         <span id="finish-time" class="font-data-display text-data-display text-primary-fixed">—</span>
       </div>
       <div class="glass-card p-md rounded-xl flex flex-col gap-xs">
-        <span id="finish-sets-label" class="text-on-surface-variant font-label-caps text-label-caps uppercase">Sets Done</span>
+        <span id="finish-sets-label" class="text-on-surface-variant font-label-caps text-label-caps uppercase">סטים</span>
         <span id="finish-sets" class="font-data-display text-data-display text-primary-fixed">—</span>
       </div>
     </div>
 
     <button id="finish-back-btn" onclick="navigate('home');renderHomeScreen();" class="w-full h-16 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center gap-md active:scale-95 transition-transform">
       <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
-      <span class="font-h3 text-h3 uppercase italic tracking-tighter">Back to Programs</span>
+      <span class="font-h3 text-h3 uppercase italic tracking-tighter">חזרה לתוכניות</span>
     </button>
   </div>
 </div>
@@ -564,11 +553,11 @@
     <!-- Body Map -->
     <div class="px-margin mb-lg">
       <div class="glass-card rounded-xl p-md">
-        <p id="modal-muscle-title" class="font-label-caps text-label-caps text-primary-fixed uppercase text-center mb-sm">Muscle Activation</p>
+        <p id="modal-muscle-title" class="font-label-caps text-label-caps text-primary-fixed uppercase text-center mb-sm">הפעלת שרירים</p>
         <div class="flex gap-md justify-center">
           <!-- Front -->
           <div class="flex-1 max-w-[100px]">
-            <p id="modal-label-front" class="font-label-caps text-[9px] text-on-surface-variant text-center mb-xs uppercase">Front</p>
+            <p id="modal-label-front" class="font-label-caps text-[9px] text-on-surface-variant text-center mb-xs uppercase">קדמי</p>
             <svg viewBox="0 0 100 235" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
               <g fill="#181818" stroke="#282828" stroke-width="0.5">
                 <ellipse cx="50" cy="14" rx="12" ry="13"/>
@@ -600,7 +589,7 @@
           </div>
           <!-- Back -->
           <div class="flex-1 max-w-[100px]">
-            <p id="modal-label-back" class="font-label-caps text-[9px] text-on-surface-variant text-center mb-xs uppercase">Back</p>
+            <p id="modal-label-back" class="font-label-caps text-[9px] text-on-surface-variant text-center mb-xs uppercase">אחורי</p>
             <svg viewBox="0 0 100 235" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
               <g fill="#181818" stroke="#282828" stroke-width="0.5">
                 <ellipse cx="50" cy="14" rx="12" ry="13"/>
@@ -635,13 +624,13 @@
 
     <!-- How To -->
     <div class="px-margin mb-lg">
-      <h4 id="modal-how-title" class="font-h3 text-h3 uppercase border-l-4 border-primary-fixed pl-md mb-md">How To Perform</h4>
+      <h4 id="modal-how-title" class="font-h3 text-h3 uppercase border-r-4 border-primary-fixed pr-md mb-md">כיצד לבצע</h4>
       <div id="modal-how" class="space-y-sm"></div>
     </div>
 
     <!-- Tips -->
     <div class="px-margin mb-xl">
-      <h4 id="modal-tips-title" class="font-h3 text-h3 uppercase border-l-4 border-secondary-container pl-md mb-md">Key Tips</h4>
+      <h4 id="modal-tips-title" class="font-h3 text-h3 uppercase border-r-4 border-secondary-container pr-md mb-md">טיפים מרכזיים</h4>
       <div id="modal-tips" class="space-y-sm"></div>
     </div>
 
