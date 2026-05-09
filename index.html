@@ -136,8 +136,11 @@
       animation: muscle-pulse 2s ease-in-out infinite;
     }
     /* Hebrew / RTL font override */
-    [dir="rtl"], [dir="rtl"] * {
+    [dir="rtl"] *:not(.material-symbols-outlined) {
       font-family: 'Heebo', 'Inter', sans-serif !important;
+    }
+    [dir="rtl"] .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined' !important;
     }
     [dir="rtl"] .font-h1, [dir="rtl"] h1,
     [dir="rtl"] .font-h2, [dir="rtl"] h2,
@@ -150,6 +153,11 @@
     [dir="rtl"] #float-timer,
     [dir="rtl"] #session-elapsed {
       font-family: 'JetBrains Mono', monospace !important;
+    }
+    /* English content stays LTR even in RTL mode */
+    [dir="rtl"] .ltr-content {
+      direction: ltr;
+      text-align: left;
     }
     /* Lang button flag style */
     .lang-btn {
@@ -188,20 +196,8 @@
         <h1 data-i18n="elitePrograms" class="font-h1 text-h1 uppercase">ELITE PROGRAMS</h1>
       </div>
 
-      <!-- Filter Chips — horizontal slider on mobile -->
-      <div class="relative mb-lg">
-        <div class="filter-slider flex gap-sm overflow-x-auto hide-scrollbar pb-2 -mx-margin px-margin">
-          <button class="filter-chip flex-shrink-0 bg-primary-fixed text-on-primary-fixed px-lg py-sm rounded-lg font-label-caps uppercase whitespace-nowrap cursor-pointer transition-all" data-filter="All" onclick="setFilter('All')" data-i18n="allPlans">All Plans</button>
-          <button class="filter-chip flex-shrink-0 bg-surface-container text-on-surface px-lg py-sm rounded-lg font-label-caps uppercase whitespace-nowrap border border-surface-container-highest cursor-pointer transition-all" data-filter="Strength" onclick="setFilter('Strength')" data-i18n="strength">Strength</button>
-          <button class="filter-chip flex-shrink-0 bg-surface-container text-on-surface px-lg py-sm rounded-lg font-label-caps uppercase whitespace-nowrap border border-surface-container-highest cursor-pointer transition-all" data-filter="Hypertrophy" onclick="setFilter('Hypertrophy')" data-i18n="hypertrophy">Hypertrophy</button>
-          <button class="filter-chip flex-shrink-0 bg-surface-container text-on-surface px-lg py-sm rounded-lg font-label-caps uppercase whitespace-nowrap border border-surface-container-highest cursor-pointer transition-all" data-filter="Cardio" onclick="setFilter('Cardio')" data-i18n="cardio">Cardio</button>
-          <button class="filter-chip flex-shrink-0 bg-surface-container text-on-surface px-lg py-sm rounded-lg font-label-caps uppercase whitespace-nowrap border border-surface-container-highest cursor-pointer transition-all" data-filter="Core" onclick="setFilter('Core')" data-i18n="core">Core</button>
-          <!-- trailing spacer so last chip clears the fade -->
-          <span class="flex-shrink-0 w-md"></span>
-        </div>
-        <!-- right fade hint -->
-        <div class="absolute right-0 top-0 bottom-2 w-12 pointer-events-none bg-gradient-to-l from-background to-transparent"></div>
-      </div>
+      <!-- Level filter / back button — managed by JS -->
+      <div id="filter-area" class="mb-lg"></div>
 
       <!-- Workout Grid -->
       <div id="workout-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-lg"></div>
@@ -528,7 +524,7 @@
       </div>
     </div>
 
-    <button id="finish-back-btn" onclick="navigate('home')" class="w-full h-16 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center gap-md active:scale-95 transition-transform">
+    <button id="finish-back-btn" onclick="navigate('home');renderHomeScreen();" class="w-full h-16 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center gap-md active:scale-95 transition-transform">
       <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
       <span class="font-h3 text-h3 uppercase italic tracking-tighter">Back to Programs</span>
     </button>
