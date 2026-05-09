@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&amp;family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#ffffff",
+                        "on-secondary": "#002e69",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary-container": "#00285c",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary": "#303030",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#abd600",
+                        "on-error": "#690005",
+                        "primary-container": "#c3f400",
+                        "on-tertiary-container": "#656464",
+                        "primary-fixed-dim": "#abd600",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "background": "#131313",
+                        "tertiary": "#ffffff",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "secondary-container": "#4b8eff",
+                        "secondary": "#adc6ff",
+                        "on-primary-fixed": "#161e00",
+                        "tertiary-fixed": "#e4e2e1",
+                        "primary-fixed": "#c3f400",
+                        "on-primary": "#283500",
+                        "inverse-primary": "#506600",
+                        "outline-variant": "#444933",
+                        "surface-container": "#201f1f",
+                        "on-secondary-fixed-variant": "#004493",
+                        "outline": "#8e9379",
+                        "tertiary-container": "#e4e2e1",
+                        "on-primary-container": "#556d00",
+                        "inverse-on-surface": "#313030",
+                        "surface-bright": "#393939",
+                        "inverse-surface": "#e5e2e1",
+                        "on-surface-variant": "#c4c9ac",
+                        "on-secondary-fixed": "#001a41",
+                        "surface-variant": "#353534",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#131313",
+                        "on-surface": "#e5e2e1",
+                        "on-background": "#e5e2e1",
+                        "surface": "#131313"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "xs": "8px",
+                        "sm": "12px",
+                        "margin": "20px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "data-display": ["JetBrains Mono"],
+                        "h1": ["Montserrat"],
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h2": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "h3": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "data-display": ["28px", {"lineHeight": "1", "letterSpacing": "-0.04em", "fontWeight": "600"}],
+                        "h1": ["40px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: linear-gradient(180deg, rgba(30, 30, 30, 0.8) 0%, rgba(30, 30, 30, 1) 100%);
+            border: 1px solid #353534;
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(19, 19, 19, 0) 0%, rgba(19, 19, 19, 1) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-32">
+<!-- Top App Bar (Shared Component Strategy) -->
+<header class="bg-surface sticky top-0 z-50 flex justify-between items-center w-full px-margin h-16 max-w-7xl mx-auto">
+<div class="flex items-center gap-xs">
+<button class="text-on-surface-variant transition-opacity active:opacity-80">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<span class="font-h2 text-h2 font-black text-primary-fixed italic tracking-tighter">TITAN STRENGTH</span>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary-fixed">notifications</span>
+<span class="material-symbols-outlined text-primary-fixed">account_circle</span>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative w-full h-[300px] overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-60" data-alt="A powerful high-contrast cinematic shot of a professional athlete performing a heavy bench press in a dark, moody high-tech gym. The lighting is dramatic, highlighting muscle definition with sharp shadows and vibrant electric lime glowing accents from digital displays. The atmosphere is intense and disciplined, utilizing a palette of deep blacks, greys, and pristine whites to create a premium, elite training environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARu620Ub1AjJ2BTtDNkVeOLJ9qgls9R8XeuNsP4EUGzwO5agHrqyjyWNWuK7hwVVRyAOx_5Z65YE47vOgU15EJQRjyheMdnM7iMbuziw-wzsDHN7n19CbNLX_dieDDJXIKKsEBjV6rm1aCVKugVrsFkRJWg51VU6C05JcvlzTLENOiWEHF6YCI0fzBcE6IgwPg8Q2AdX3pkSwQJPURgJzcbfRkscUUcRaCkpPGPOGS8KvMNx7X5pXxlHbApmXZR0g7iCMLd_laRVc"/>
+<div class="absolute inset-0 hero-gradient flex flex-col justify-end px-margin pb-lg">
+<div class="flex gap-xs mb-sm">
+<span class="bg-primary-container text-on-primary-container px-sm py-base rounded-full font-label-caps text-label-caps uppercase">Hypertrophy</span>
+<span class="bg-surface-container-highest text-primary-fixed px-sm py-base rounded-full font-label-caps text-label-caps uppercase">Intermediate</span>
+</div>
+<h1 class="font-h1 text-h1 uppercase tracking-tight text-primary">PUSH DAY: ELITE STRENGTH</h1>
+<p class="text-on-surface-variant font-body-lg mt-xs">Maximize chest density and tricep power with precision-targeted compound movements.</p>
+</div>
+</section>
+<!-- Plan Stats Grid (Bento Style) -->
+<main class="px-margin space-y-lg mt-lg">
+<div class="grid grid-cols-2 gap-md">
+<div class="glass-card p-md rounded-xl flex flex-col gap-xs">
+<span class="text-on-surface-variant font-label-caps text-label-caps uppercase">Duration</span>
+<span class="font-data-display text-data-display text-primary-fixed">75<span class="text-h3 font-h3 ml-1 uppercase">Min</span></span>
+</div>
+<div class="glass-card p-md rounded-xl flex flex-col gap-xs">
+<span class="text-on-surface-variant font-label-caps text-label-caps uppercase">Exercises</span>
+<span class="font-data-display text-data-display text-primary-fixed">08</span>
+</div>
+</div>
+<!-- Exercise List -->
+<div class="space-y-md">
+<h3 class="font-h3 text-h3 uppercase text-primary border-l-4 border-primary-fixed pl-md">The Protocol</h3>
+<!-- Exercise Item 1 -->
+<div class="glass-card rounded-xl overflow-hidden">
+<div class="flex gap-md p-md">
+<div class="w-20 h-20 bg-surface-container-highest rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close up shot of heavy metal dumbbells on a rubber gym floor. The scene is shot in a high-contrast dark mode style with sharp focus on the textures of the metal and the rubber. Subtle blue and electric lime light highlights the edges, creating a precision-engineered, high-tech athletic feel consistent with an elite training facility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlmbtyYtCjZ1-9YqApsKgl2KE0PZe1TU6Oq933UOS3dXiyOQJB2dwLE8HI4vc16Mmh15lxI3NX0AOwDmzj6jeYEA6eEDMwBToW3c9wkpzz8xQM6KX8E1SImp9eXpeFrTmKXQsfxcNov3uX1Xv__EJxK8HqRWxAp4dM44iECBT1L3_S63hFl6Vr-tWudOoe4ZAHPpA9C94uMh_xecdZ8lELSGkri9xY_X18BjbTtY5_WPGhcYpYOnbXWxeAShB6MzMJPbas94mvpDc"/>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<h4 class="font-h3 text-body-lg text-primary uppercase">Barbell Bench Press</h4>
+<div class="flex flex-wrap gap-xs mt-xs">
+<span class="bg-surface-container-highest text-on-surface-variant px-xs py-[2px] rounded text-[10px] font-bold uppercase tracking-widest">Bench</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-xs py-[2px] rounded text-[10px] font-bold uppercase tracking-widest">Chest</span>
+</div>
+</div>
+<div class="flex items-end justify-between mt-sm">
+<span class="font-data-display text-h3 text-primary-fixed">4 <span class="text-body-md font-body-md text-on-surface-variant">x</span> 8-10</span>
+<span class="material-symbols-outlined text-on-surface-variant">info</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Exercise Item 2 -->
+<div class="glass-card rounded-xl overflow-hidden border-l-2 border-primary-fixed">
+<div class="flex gap-md p-md">
+<div class="w-20 h-20 bg-surface-container-highest rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Action shot of an athlete performing a chest press with dumbbells in a modern, dark-themed gym. The image focuses on the movement and form, with soft gradients and sharp metallic highlights. The lighting emphasizes the disciplined and high-performance atmosphere, using the brand's secondary blue and primary lime colors in the background lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGbpslZ-17ftLW69ygMTGAcDvIgslZwlIs2hyNVPSX-LcbBmuh97MKxeLeFGmOyYU-QrvAdc-3IPR08ZUC1LPfRF1FYCtf23nzUXr1frJrpPrWBGlwaMVNG83jFpCuKgY2yCuNTj5GWZ-TK1kkU1I962Ni9mlEgVuY93Z6HCxd4URI4xU8nuQ3I9j2xtI7dJrj3uJ2EKikWCpcD0RmmXFlkLFiY-YONK0IKJB_W2vZJ1pZVCsnO8U2NuK8zafIbjB-aS_WXI1aQVI"/>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<h4 class="font-h3 text-body-lg text-primary uppercase">Incline DB Press</h4>
+<div class="flex flex-wrap gap-xs mt-xs">
+<span class="bg-surface-container-highest text-on-surface-variant px-xs py-[2px] rounded text-[10px] font-bold uppercase tracking-widest">Dumbbells</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-xs py-[2px] rounded text-[10px] font-bold uppercase tracking-widest">Upper Chest</span>
+</div>
+</div>
+<div class="flex items-end justify-between mt-sm">
+<span class="font-data-display text-h3 text-primary-fixed">3 <span class="text-body-md font-body-md text-on-surface-variant">x</span> 12</span>
+<span class="material-symbols-outlined text-on-surface-variant">info</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Exercise Item 3 -->
+<div class="glass-card rounded-xl overflow-hidden">
+<div class="flex gap-md p-md">
+<div class="w-20 h-20 bg-surface-container-highest rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Industrial steel cable machine pulley in a professional strength center. The dark metallic surfaces are contrasted by a glowing blue indicator line. High-contrast shadows and clean aesthetic focus on the high-tech equipment used for precise isolation exercises. The overall vibe is one of engineering excellence and elite performance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp9-biXJ3VVKNdCmFJdMKvVdgdOSoRQAt4Ka9OSMgjyo0ZO0hOS_V40mRCd1lr8JctyEqEUuj8Vic0V77wZQBxh9HPLGa-etKhbU6xKci9IraUKgBRvrCbKqivW0JxmSdTitaua9yR5O0XwM8hDJFKVVy9grKf1oA3jDx8FXnqAjqDrdBWfO983qAtP5l5CtGWs6ueT_WuHx6ypAdDczeJcg9y7BB8JEqzJrOEeEqYagxSSwaPEx_qlycYUHK07m9xDEBGi7_GySo"/>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<h4 class="font-h3 text-body-lg text-primary uppercase">Cable Tricep Pushdown</h4>
+<div class="flex flex-wrap gap-xs mt-xs">
+<span class="bg-surface-container-highest text-on-surface-variant px-xs py-[2px] rounded text-[10px] font-bold uppercase tracking-widest">Cable</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-xs py-[2px] rounded text-[10px] font-bold uppercase tracking-widest">Triceps</span>
+</div>
+</div>
+<div class="flex items-end justify-between mt-sm">
+<span class="font-data-display text-h3 text-primary-fixed">4 <span class="text-body-md font-body-md text-on-surface-variant">x</span> 15</span>
+<span class="material-symbols-outlined text-on-surface-variant">info</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Exercise Item 4 -->
+<div class="glass-card rounded-xl overflow-hidden">
+<div class="flex gap-md p-md">
+<div class="w-20 h-20 bg-surface-container-highest rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Gym equipment focused shot of dipping bars in a dark, professional gym environment. Sharp metallic edges are caught in high-key spotlighting, creating a focused, dramatic aesthetic. The background is a deep charcoal, ensuring the primary white and lime accents of the UI would pop against this disciplined, high-end athletic setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbO2WAoSr1ghKhqB5_ULjekw1Awev6_Y3I88gilVssbWscfH96meTh0_CgtvcjdlytBpSKs-ZdzNFt1XW2jAll8ncGK4htM96686NhOTGXM2fIaEHJ-a1mU7Ek_-HNhbSnC9904hUassZe_tsiyPHXjH2e7W3P229yH6UCEDge68IwObOpEAvr_tV11pkmQakZOGlRkybASiszbp1WZXVDHgBhSeykin2XQvYdhJF2ARhtQqr-6zDZ2fRfdIFL4cqSEavDkfRRWCk"/>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<h4 class="font-h3 text-body-lg text-primary uppercase">Dips (Weighted)</h4>
+<div class="flex flex-wrap gap-xs mt-xs">
+<span class="bg-surface-container-highest text-on-surface-variant px-xs py-[2px] rounded text-[10px] font-bold uppercase tracking-widest">Bodyweight</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-xs py-[2px] rounded text-[10px] font-bold uppercase tracking-widest">Triceps</span>
+</div>
+</div>
+<div class="flex items-end justify-between mt-sm">
+<span class="font-data-display text-h3 text-primary-fixed">3 <span class="text-body-md font-body-md text-on-surface-variant">x</span> Failure</span>
+<span class="material-symbols-outlined text-on-surface-variant">info</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Bottom CTA -->
+<div class="fixed bottom-0 left-0 w-full p-margin bg-gradient-to-t from-background via-background to-transparent z-[60]">
+<button class="w-full h-16 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center gap-md active:scale-95 transition-transform">
+<span class="font-h3 text-h3 uppercase italic tracking-tighter">Start Workout</span>
+<span class="material-symbols-outlined text-h3" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<!-- Bottom Navigation Bar (Shared Component Strategy - Hidden to prioritize CTA) -->
+<!-- Suppressed per UX Goal: "hide the shell to prioritize the Canvas" during task-focused screens -->
+</body></html>

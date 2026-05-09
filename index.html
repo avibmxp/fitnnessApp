@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+  <title>TITAN STRENGTH</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@600&family=Heebo:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#ffffff",
+            "on-secondary": "#002e69",
+            "surface-container-lowest": "#0e0e0e",
+            "on-primary-fixed-variant": "#3c4d00",
+            "surface-container-low": "#1c1b1b",
+            "on-secondary-container": "#00285c",
+            "error-container": "#93000a",
+            "surface-container-high": "#2a2a2a",
+            "surface-container-highest": "#353534",
+            "on-tertiary": "#303030",
+            "secondary-fixed-dim": "#adc6ff",
+            "error": "#ffb4ab",
+            "surface-tint": "#abd600",
+            "on-error": "#690005",
+            "primary-container": "#c3f400",
+            "on-tertiary-container": "#656464",
+            "primary-fixed-dim": "#abd600",
+            "tertiary-fixed-dim": "#c8c6c5",
+            "background": "#131313",
+            "tertiary": "#ffffff",
+            "secondary-fixed": "#d8e2ff",
+            "on-tertiary-fixed": "#1b1c1c",
+            "secondary-container": "#4b8eff",
+            "secondary": "#adc6ff",
+            "on-primary-fixed": "#161e00",
+            "tertiary-fixed": "#e4e2e1",
+            "primary-fixed": "#c3f400",
+            "on-primary": "#283500",
+            "inverse-primary": "#506600",
+            "outline-variant": "#444933",
+            "surface-container": "#201f1f",
+            "on-secondary-fixed-variant": "#004493",
+            "outline": "#8e9379",
+            "tertiary-container": "#e4e2e1",
+            "on-primary-container": "#556d00",
+            "inverse-on-surface": "#313030",
+            "surface-bright": "#393939",
+            "inverse-surface": "#e5e2e1",
+            "on-surface-variant": "#c4c9ac",
+            "on-secondary-fixed": "#001a41",
+            "surface-variant": "#353534",
+            "on-tertiary-fixed-variant": "#474746",
+            "on-error-container": "#ffdad6",
+            "surface-dim": "#131313",
+            "on-surface": "#e5e2e1",
+            "on-background": "#e5e2e1",
+            "surface": "#131313"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"
+          },
+          spacing: {
+            "gutter": "16px", "xs": "8px", "sm": "12px", "margin": "20px",
+            "md": "16px", "lg": "24px", "xl": "32px", "base": "4px"
+          },
+          fontFamily: {
+            "data-display": ["JetBrains Mono"],
+            "h1": ["Montserrat"], "h2": ["Montserrat"], "h3": ["Montserrat"],
+            "label-caps": ["Inter"], "body-md": ["Inter"], "body-lg": ["Inter"]
+          },
+          fontSize: {
+            "data-display": ["28px", {lineHeight:"1", letterSpacing:"-0.04em", fontWeight:"600"}],
+            "h1": ["40px", {lineHeight:"1.1", letterSpacing:"-0.02em", fontWeight:"800"}],
+            "label-caps": ["12px", {lineHeight:"1", letterSpacing:"0.1em", fontWeight:"700"}],
+            "body-md": ["16px", {lineHeight:"1.5", fontWeight:"400"}],
+            "h2": ["32px", {lineHeight:"1.2", letterSpacing:"-0.01em", fontWeight:"700"}],
+            "body-lg": ["18px", {lineHeight:"1.5", fontWeight:"400"}],
+            "h3": ["24px", {lineHeight:"1.2", fontWeight:"700"}]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .gradient-card {
+      background: linear-gradient(180deg, #1E1E1E 0%, #161616 100%);
+    }
+    .progress-gradient {
+      background: linear-gradient(90deg, #4b8eff 0%, #c3f400 100%);
+    }
+    .glass-card {
+      background: linear-gradient(180deg, rgba(30,30,30,0.8) 0%, rgba(30,30,30,1) 100%);
+      border: 1px solid #353534;
+    }
+    .hero-gradient {
+      background: linear-gradient(180deg, rgba(19,19,19,0) 0%, rgba(19,19,19,1) 100%);
+    }
+    .machined-card {
+      background: linear-gradient(180deg, rgba(30,30,30,1) 0%, rgba(20,20,20,1) 100%);
+    }
+    .active-glow {
+      box-shadow: 0px 0px 15px rgba(195, 244, 0, 0.2);
+    }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .filter-slider {
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .filter-slider .filter-chip {
+      scroll-snap-align: start;
+    }
+    .screen { min-height: 100dvh; }
+
+    /* ── Body map muscle highlight ── */
+    @keyframes muscle-pulse {
+      0%, 100% { opacity: 1; filter: drop-shadow(0 0 4px rgba(195,244,0,0.7)); }
+      50%       { opacity: 0.75; filter: drop-shadow(0 0 10px rgba(195,244,0,1)); }
+    }
+    .muscle-group {
+      fill: #1e1e1e;
+      stroke: #333;
+      stroke-width: 0.8;
+      transition: fill 0.3s, stroke 0.3s;
+    }
+    .muscle-active {
+      fill: #c3f400 !important;
+      stroke: #c3f400 !important;
+      animation: muscle-pulse 2s ease-in-out infinite;
+    }
+    /* Hebrew / RTL font override */
+    [dir="rtl"], [dir="rtl"] * {
+      font-family: 'Heebo', 'Inter', sans-serif !important;
+    }
+    [dir="rtl"] .font-h1, [dir="rtl"] h1,
+    [dir="rtl"] .font-h2, [dir="rtl"] h2,
+    [dir="rtl"] .font-h3, [dir="rtl"] h3 {
+      font-family: 'Heebo', sans-serif !important;
+      letter-spacing: 0 !important;
+    }
+    [dir="rtl"] .font-data-display,
+    [dir="rtl"] #rest-timer-display,
+    [dir="rtl"] #float-timer,
+    [dir="rtl"] #session-elapsed {
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+    /* Lang button flag style */
+    .lang-btn {
+      font-size: 18px;
+      line-height: 1;
+      padding: 2px 4px;
+      border: none !important;
+      background: none;
+    }
+    .lang-btn:hover { transform: scale(1.15); transition: transform 0.15s; }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased">
+
+<!-- ══════════════════════════════════════════════════════════
+     SCREEN 1 — HOME / SELECT PLAN
+═══════════════════════════════════════════════════════════ -->
+<div id="screen-home" class="screen hidden pb-28">
+
+  <!-- Header -->
+  <header class="bg-surface fixed top-0 w-full z-50">
+    <div class="flex justify-between items-center w-full px-margin h-16 max-w-7xl mx-auto">
+      <div class="font-h2 text-h2 font-black text-primary-fixed italic tracking-tighter">TITAN STRENGTH</div>
+      <div class="flex gap-4 items-center">
+        <button onclick="toggleLang()" class="lang-btn cursor-pointer" title="Switch language">🇮🇱</button>
+        <span class="material-symbols-outlined text-primary-fixed cursor-pointer">notifications</span>
+        <span class="material-symbols-outlined text-primary-fixed cursor-pointer">account_circle</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-20 px-margin max-w-7xl mx-auto">
+    <!-- Hero -->
+    <section class="mt-lg">
+      <div class="flex flex-col gap-base mb-lg">
+        <span data-i18n="currentFocus" class="font-label-caps text-label-caps uppercase text-primary-fixed">CURRENT FOCUS</span>
+        <h1 data-i18n="elitePrograms" class="font-h1 text-h1 uppercase">ELITE PROGRAMS</h1>
+      </div>
+
+      <!-- Filter Chips — horizontal slider on mobile -->
+      <div class="relative mb-lg">
+        <div class="filter-slider flex gap-sm overflow-x-auto hide-scrollbar pb-2 -mx-margin px-margin">
+          <button class="filter-chip flex-shrink-0 bg-primary-fixed text-on-primary-fixed px-lg py-sm rounded-lg font-label-caps uppercase whitespace-nowrap cursor-pointer transition-all" data-filter="All" onclick="setFilter('All')" data-i18n="allPlans">All Plans</button>
+          <button class="filter-chip flex-shrink-0 bg-surface-container text-on-surface px-lg py-sm rounded-lg font-label-caps uppercase whitespace-nowrap border border-surface-container-highest cursor-pointer transition-all" data-filter="Strength" onclick="setFilter('Strength')" data-i18n="strength">Strength</button>
+          <button class="filter-chip flex-shrink-0 bg-surface-container text-on-surface px-lg py-sm rounded-lg font-label-caps uppercase whitespace-nowrap border border-surface-container-highest cursor-pointer transition-all" data-filter="Hypertrophy" onclick="setFilter('Hypertrophy')" data-i18n="hypertrophy">Hypertrophy</button>
+          <button class="filter-chip flex-shrink-0 bg-surface-container text-on-surface px-lg py-sm rounded-lg font-label-caps uppercase whitespace-nowrap border border-surface-container-highest cursor-pointer transition-all" data-filter="Cardio" onclick="setFilter('Cardio')" data-i18n="cardio">Cardio</button>
+          <button class="filter-chip flex-shrink-0 bg-surface-container text-on-surface px-lg py-sm rounded-lg font-label-caps uppercase whitespace-nowrap border border-surface-container-highest cursor-pointer transition-all" data-filter="Core" onclick="setFilter('Core')" data-i18n="core">Core</button>
+          <!-- trailing spacer so last chip clears the fade -->
+          <span class="flex-shrink-0 w-md"></span>
+        </div>
+        <!-- right fade hint -->
+        <div class="absolute right-0 top-0 bottom-2 w-12 pointer-events-none bg-gradient-to-l from-background to-transparent"></div>
+      </div>
+
+      <!-- Workout Grid -->
+      <div id="workout-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-lg"></div>
+    </section>
+  </main>
+
+  <!-- Bottom Nav -->
+  <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-gutter bg-surface-container border-t border-surface-variant">
+    <a class="flex flex-col items-center justify-center text-primary-fixed font-bold gap-1" href="#">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+      <span class="font-label-caps text-label-caps uppercase">Training</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1" href="#">
+      <span class="material-symbols-outlined">format_list_bulleted</span>
+      <span class="font-label-caps text-label-caps uppercase">Programs</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1" href="#">
+      <span class="material-symbols-outlined">insights</span>
+      <span class="font-label-caps text-label-caps uppercase">Progress</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1" href="#">
+      <span class="material-symbols-outlined">person</span>
+      <span class="font-label-caps text-label-caps uppercase">Profile</span>
+    </a>
+  </nav>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SCREEN 2 — PLAN OVERVIEW
+═══════════════════════════════════════════════════════════ -->
+<div id="screen-overview" class="screen hidden pb-28">
+
+  <!-- Header -->
+  <header class="bg-surface sticky top-0 z-50 flex justify-between items-center w-full px-margin h-16 max-w-7xl mx-auto">
+    <div class="flex items-center gap-xs">
+      <button onclick="navigate('home')" class="text-on-surface-variant active:opacity-80 transition-opacity">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <span class="font-h2 text-h2 font-black text-primary-fixed italic tracking-tighter">TITAN STRENGTH</span>
+    </div>
+    <div class="flex items-center gap-md">
+      <button onclick="toggleLang()" class="lang-btn cursor-pointer" title="Switch language">🇮🇱</button>
+      <span class="material-symbols-outlined text-primary-fixed">notifications</span>
+      <span class="material-symbols-outlined text-primary-fixed">account_circle</span>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative w-full h-[220px] overflow-hidden bg-surface-container-high">
+    <div class="absolute inset-0 flex items-center justify-center opacity-10">
+      <span class="material-symbols-outlined text-primary-fixed" style="font-size: 180px;">fitness_center</span>
+    </div>
+    <div class="absolute inset-0 hero-gradient flex flex-col justify-end px-margin pb-lg">
+      <div class="flex gap-xs mb-sm">
+        <span id="overview-category" class="bg-primary-container text-on-primary-container px-sm py-base rounded-full font-label-caps text-label-caps uppercase">—</span>
+        <span id="overview-difficulty" class="bg-surface-container-highest text-primary-fixed px-sm py-base rounded-full font-label-caps text-label-caps uppercase">—</span>
+      </div>
+      <h1 id="overview-name" class="font-h1 text-h1 uppercase tracking-tight text-primary">—</h1>
+      <p id="overview-subtitle" class="text-on-surface-variant font-body-lg mt-xs">—</p>
+    </div>
+  </section>
+
+  <main class="px-margin space-y-lg mt-lg max-w-7xl mx-auto">
+    <!-- Stats -->
+    <div class="grid grid-cols-2 gap-md">
+      <div class="glass-card p-md rounded-xl flex flex-col gap-xs">
+        <span data-i18n="duration" class="text-on-surface-variant font-label-caps text-label-caps uppercase">Duration</span>
+        <span class="font-data-display text-data-display text-primary-fixed"><span id="overview-duration">—</span><span id="overview-duration-unit" class="text-h3 font-h3 ml-1 uppercase">Min</span></span>
+      </div>
+      <div class="glass-card p-md rounded-xl flex flex-col gap-xs">
+        <span id="overview-exercise-label" class="text-on-surface-variant font-label-caps text-label-caps uppercase">Exercises</span>
+        <span id="overview-exercise-count" class="font-data-display text-data-display text-primary-fixed">—</span>
+      </div>
+    </div>
+
+    <!-- Muscle Map -->
+    <div>
+      <h3 class="font-h3 text-h3 uppercase text-primary border-l-4 border-primary-fixed pl-md mb-md"><span id="section-muscles">Muscles Worked</span></h3>
+      <div class="glass-card rounded-xl p-md">
+        <div class="flex gap-md justify-center">
+          <!-- Front -->
+          <div class="flex-1 max-w-[120px]">
+            <p id="label-front" class="font-label-caps text-label-caps text-on-surface-variant text-center mb-sm uppercase">Front</p>
+            <svg viewBox="0 0 100 235" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+              <!-- Silhouette base -->
+              <g fill="#181818" stroke="#282828" stroke-width="0.5">
+                <ellipse cx="50" cy="14" rx="12" ry="13"/>
+                <rect x="46" y="26" width="8" height="9" rx="3"/>
+                <path d="M30 42 Q50 38 70 42 L72 112 Q50 116 28 112 Z"/>
+                <rect x="16" y="44" width="14" height="64" rx="7"/>
+                <rect x="70" y="44" width="14" height="64" rx="7"/>
+                <rect x="13" y="108" width="12" height="46" rx="6"/>
+                <rect x="75" y="108" width="12" height="46" rx="6"/>
+                <rect x="29" y="113" width="16" height="115" rx="8"/>
+                <rect x="55" y="113" width="16" height="115" rx="8"/>
+              </g>
+              <!-- Muscle groups (front) — data-map="ov" -->
+              <ellipse class="muscle-group" data-map="ov" data-muscle="f-shoulder-l" cx="23" cy="56" rx="10" ry="13"/>
+              <ellipse class="muscle-group" data-map="ov" data-muscle="f-shoulder-r" cx="77" cy="56" rx="10" ry="13"/>
+              <path   class="muscle-group" data-map="ov" data-muscle="f-chest-l"    d="M30 44 Q49 42 49 74 Q38 76 30 67 Z"/>
+              <path   class="muscle-group" data-map="ov" data-muscle="f-chest-r"    d="M70 44 Q51 42 51 74 Q62 76 70 67 Z"/>
+              <rect   class="muscle-group" data-map="ov" data-muscle="f-abs"        x="44" y="75" width="12" height="35" rx="5"/>
+              <path   class="muscle-group" data-map="ov" data-muscle="f-oblique-l"  d="M30 67 L43 70 L42 110 L29 108 Z"/>
+              <path   class="muscle-group" data-map="ov" data-muscle="f-oblique-r"  d="M70 67 L57 70 L58 110 L71 108 Z"/>
+              <ellipse class="muscle-group" data-map="ov" data-muscle="f-bicep-l"   cx="20" cy="77" rx="6" ry="14"/>
+              <ellipse class="muscle-group" data-map="ov" data-muscle="f-bicep-r"   cx="80" cy="77" rx="6" ry="14"/>
+              <ellipse class="muscle-group" data-map="ov" data-muscle="f-forearm-l" cx="18" cy="112" rx="5" ry="11"/>
+              <ellipse class="muscle-group" data-map="ov" data-muscle="f-forearm-r" cx="82" cy="112" rx="5" ry="11"/>
+              <path   class="muscle-group" data-map="ov" data-muscle="f-quad-l"    d="M30 114 L45 114 L43 166 L29 164 Z"/>
+              <path   class="muscle-group" data-map="ov" data-muscle="f-quad-r"    d="M70 114 L55 114 L57 166 L71 164 Z"/>
+              <ellipse class="muscle-group" data-map="ov" data-muscle="f-calf-l"   cx="36" cy="193" rx="8" ry="16"/>
+              <ellipse class="muscle-group" data-map="ov" data-muscle="f-calf-r"   cx="64" cy="193" rx="8" ry="16"/>
+            </svg>
+          </div>
+          <!-- Back -->
+          <div class="flex-1 max-w-[120px]">
+            <p id="label-back-view" class="font-label-caps text-label-caps text-on-surface-variant text-center mb-sm uppercase">Back</p>
+            <svg viewBox="0 0 100 235" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+              <g fill="#181818" stroke="#282828" stroke-width="0.5">
+                <ellipse cx="50" cy="14" rx="12" ry="13"/>
+                <rect x="46" y="26" width="8" height="9" rx="3"/>
+                <path d="M30 42 Q50 38 70 42 L72 112 Q50 116 28 112 Z"/>
+                <rect x="16" y="44" width="14" height="64" rx="7"/>
+                <rect x="70" y="44" width="14" height="64" rx="7"/>
+                <rect x="13" y="108" width="12" height="46" rx="6"/>
+                <rect x="75" y="108" width="12" height="46" rx="6"/>
+                <rect x="29" y="113" width="16" height="115" rx="8"/>
+                <rect x="55" y="113" width="16" height="115" rx="8"/>
+              </g>
+              <path   class="muscle-group" data-map="ov" data-muscle="b-trap"           d="M36 42 Q50 38 64 42 L62 60 Q50 57 38 60 Z"/>
+              <path   class="muscle-group" data-map="ov" data-muscle="b-lat-l"          d="M30 58 L42 60 L40 102 L28 97 Z"/>
+              <path   class="muscle-group" data-map="ov" data-muscle="b-lat-r"          d="M70 58 L58 60 L60 102 L72 97 Z"/>
+              <rect   class="muscle-group" data-map="ov" data-muscle="b-lower-back"     x="42" y="90" width="16" height="22" rx="4"/>
+              <ellipse class="muscle-group" data-map="ov" data-muscle="b-rear-delt-l"   cx="22" cy="54" rx="9" ry="11"/>
+              <ellipse class="muscle-group" data-map="ov" data-muscle="b-rear-delt-r"   cx="78" cy="54" rx="9" ry="11"/>
+              <ellipse class="muscle-group" data-map="ov" data-muscle="b-tricep-l"      cx="19" cy="76" rx="6" ry="14"/>
+              <ellipse class="muscle-group" data-map="ov" data-muscle="b-tricep-r"      cx="81" cy="76" rx="6" ry="14"/>
+              <ellipse class="muscle-group" data-map="ov" data-muscle="b-glute-l"       cx="37" cy="120" rx="10" ry="11"/>
+              <ellipse class="muscle-group" data-map="ov" data-muscle="b-glute-r"       cx="63" cy="120" rx="10" ry="11"/>
+              <path   class="muscle-group" data-map="ov" data-muscle="b-hamstring-l"   d="M29 130 L44 130 L42 175 L28 173 Z"/>
+              <path   class="muscle-group" data-map="ov" data-muscle="b-hamstring-r"   d="M71 130 L56 130 L58 175 L72 173 Z"/>
+              <ellipse class="muscle-group" data-map="ov" data-muscle="b-calf-l"        cx="36" cy="196" rx="8" ry="16"/>
+              <ellipse class="muscle-group" data-map="ov" data-muscle="b-calf-r"        cx="64" cy="196" rx="8" ry="16"/>
+            </svg>
+          </div>
+        </div>
+        <!-- Legend -->
+        <div class="flex items-center justify-center gap-lg mt-sm">
+          <div class="flex items-center gap-xs">
+            <div class="w-3 h-3 rounded-full bg-primary-fixed"></div>
+            <span id="label-targeted" class="font-label-caps text-label-caps text-on-surface-variant uppercase">Targeted</span>
+          </div>
+          <div class="flex items-center gap-xs">
+            <div class="w-3 h-3 rounded-full bg-surface-container-highest border border-outline"></div>
+            <span id="label-not-targeted" class="font-label-caps text-label-caps text-on-surface-variant uppercase">Not targeted</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body Areas -->
+    <div>
+      <h3 class="font-h3 text-h3 uppercase text-primary border-l-4 border-primary-fixed pl-md mb-md"><span id="section-body-areas">Body Areas</span></h3>
+      <div id="overview-areas" class="flex flex-wrap gap-sm"></div>
+    </div>
+
+    <!-- Exercise List -->
+    <div class="space-y-md pb-4">
+      <h3 class="font-h3 text-h3 uppercase text-primary border-l-4 border-primary-fixed pl-md"><span id="section-protocol">The Protocol</span>
+        <span id="tap-guide-hint" class="text-on-surface-variant font-body-md text-body-md ml-sm normal-case" style="font-family:Inter">(tap for form guide)</span>
+      </h3>
+      <div id="overview-exercise-list" class="space-y-md"></div>
+    </div>
+  </main>
+
+  <!-- Sticky Start CTA -->
+  <div class="fixed bottom-0 left-0 w-full p-margin bg-gradient-to-t from-background via-background to-transparent z-[60]">
+    <button onclick="startWorkout()" class="w-full h-16 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center gap-md active:scale-95 transition-transform">
+      <span data-i18n="startWorkout" class="font-h3 text-h3 uppercase italic tracking-tighter">Start Workout</span>
+      <span class="material-symbols-outlined text-h3" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+    </button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SCREEN 3 — ACTIVE WORKOUT
+═══════════════════════════════════════════════════════════ -->
+<div id="screen-workout" class="screen hidden pb-32">
+
+  <!-- Header -->
+  <header class="bg-surface sticky top-0 z-50 flex justify-between items-center w-full px-margin h-16 max-w-7xl mx-auto">
+    <span id="workout-name-header" class="font-h2 text-h2 font-black text-primary-fixed italic tracking-tighter truncate">—</span>
+    <span id="session-elapsed" class="font-data-display text-primary-fixed text-lg">00:00:00</span>
+  </header>
+
+  <main class="flex-grow w-full max-w-md mx-auto px-margin pt-lg">
+
+    <!-- Exercise Header -->
+    <section class="mb-xl text-center">
+      <div class="flex items-center justify-between mb-xs">
+        <span id="exercise-counter" class="font-label-caps text-label-caps text-primary-fixed uppercase tracking-widest">EXERCISE 1 OF 1</span>
+      </div>
+      <h1 id="exercise-name" class="font-h1 text-h1 uppercase mb-base">—</h1>
+      <div id="exercise-tags" class="flex justify-center gap-sm flex-wrap"></div>
+    </section>
+
+    <!-- Rest Timer Panel (hidden when not active) -->
+    <div id="rest-timer-panel" class="hidden mb-md">
+      <div class="machined-card rounded-xl border border-surface-container-highest p-lg flex flex-col items-center justify-center relative overflow-hidden active-glow">
+        <div class="absolute top-0 left-0 h-1 bg-gradient-to-r from-secondary-container to-primary-container" id="rest-timer-progress" style="width: 100%"></div>
+        <span id="rest-timer-label" class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-sm">Rest Timer</span>
+        <div id="rest-timer-display" class="font-data-display text-[64px] text-primary-fixed leading-none mb-md" style="font-family: 'JetBrains Mono', monospace;">00:00</div>
+        <div class="flex gap-md w-full">
+          <button onclick="addRestTime(30)" class="flex-1 bg-surface-container-highest py-md rounded-lg font-h3 text-h3 text-primary-fixed border border-surface-container-highest active:scale-95 transition-all">
+            +30s
+          </button>
+          <button id="skip-btn" onclick="skipRestTimer()" class="flex-1 border border-secondary-container text-secondary py-md rounded-lg font-h3 text-h3 active:scale-95 transition-all">
+            SKIP
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Set Input Panel -->
+    <div id="set-input-panel" class="grid grid-cols-1 gap-md transition-opacity">
+
+      <!-- Active Set Card -->
+      <div class="machined-card rounded-xl border-2 border-primary-fixed p-lg">
+        <div class="flex justify-between items-start mb-lg">
+          <div>
+            <span id="current-target-label" class="font-label-caps text-label-caps text-primary-fixed uppercase block mb-xs">Current Target</span>
+            <h3 id="set-number" class="font-h2 text-h2 leading-none">SET 1</h3>
+          </div>
+          <div class="text-right">
+            <span id="previous-label" class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-xs">Previous</span>
+            <div id="previous-best" class="font-data-display text-h3">—</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-md mb-xl">
+          <div class="bg-surface-container-lowest p-md rounded-lg border border-surface-container-highest">
+            <label id="weight-label" class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-xs text-[10px]">WEIGHT (KG)</label>
+            <input id="weight-input" class="bg-transparent border-none text-primary font-data-display text-data-display w-full focus:ring-0 p-0" type="number" inputmode="decimal" min="0" step="0.5" placeholder="—"/>
+          </div>
+          <div class="bg-surface-container-lowest p-md rounded-lg border border-surface-container-highest">
+            <label id="reps-label" class="font-label-caps text-label-caps text-on-surface-variant uppercase block mb-xs text-[10px]">REPS</label>
+            <input id="reps-input" class="bg-transparent border-none text-primary font-data-display text-data-display w-full focus:ring-0 p-0" type="number" inputmode="numeric" min="0" placeholder="—"/>
+          </div>
+        </div>
+        <button id="complete-set-btn" onclick="completeSet()" class="w-full bg-primary-fixed text-on-primary-fixed py-lg rounded-lg font-h3 text-h3 uppercase active:scale-95 transition-all flex items-center justify-center gap-sm">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          COMPLETE SET
+        </button>
+      </div>
+
+      <!-- Set Log -->
+      <div class="bg-surface-container rounded-xl overflow-hidden border border-surface-container-highest">
+        <div class="px-lg py-md border-b border-surface-container-highest flex justify-between">
+          <span id="set-log-title" class="font-label-caps text-label-caps text-on-surface-variant uppercase">Set Log</span>
+          <span id="set-log-count" class="font-label-caps text-label-caps text-on-surface-variant uppercase">0 of 0 Done</span>
+        </div>
+        <div id="set-log" class="divide-y divide-surface-container-highest"></div>
+      </div>
+
+    </div><!-- /set-input-panel -->
+
+    <!-- Secondary Actions -->
+    <div class="mt-xl flex flex-col gap-md pb-4">
+      <button id="next-exercise-btn" onclick="nextExercise()" class="hidden w-full bg-primary-fixed text-on-primary-fixed py-lg rounded-xl font-h3 text-h3 uppercase active:scale-95 transition-all">
+        NEXT EXERCISE
+      </button>
+      <button id="end-early-btn" onclick="confirmEndWorkout()" class="w-full text-error font-label-caps text-label-caps uppercase tracking-widest py-md active:opacity-60 transition-opacity">
+        END WORKOUT EARLY
+      </button>
+    </div>
+
+  </main>
+
+  <!-- Floating Session Timer -->
+  <div class="fixed bottom-margin left-margin right-margin h-14 bg-surface-container-highest rounded-xl border border-primary-fixed/30 flex items-center px-lg justify-between shadow-2xl z-50" style="left:20px; right:20px; bottom:20px;">
+    <div class="flex items-center gap-md">
+      <div class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse"></div>
+      <span id="session-active-label" class="font-label-caps text-label-caps text-primary-fixed uppercase">Session Active</span>
+    </div>
+    <div id="float-timer" class="font-data-display text-h3 text-primary-fixed" style="font-family: 'JetBrains Mono', monospace;">00:00</div>
+  </div>
+
+  <!-- End Workout Confirmation Modal -->
+  <div id="end-workout-modal" class="hidden fixed inset-0 z-[100] bg-black/70 flex items-center justify-center p-margin">
+    <div class="bg-surface-container rounded-xl p-xl w-full max-w-sm border border-surface-container-highest">
+      <h3 id="end-modal-title" class="font-h3 text-h3 uppercase mb-sm">End Workout?</h3>
+      <p id="end-modal-msg" class="text-on-surface-variant mb-xl">Your progress will be saved. Are you sure you want to end this session early?</p>
+      <div class="flex gap-md">
+        <button id="end-modal-cancel" onclick="cancelEndWorkout()" class="flex-1 border border-surface-container-highest text-on-surface py-sm rounded-lg font-h3 font-bold uppercase active:scale-95 transition-all">Cancel</button>
+        <button id="end-modal-confirm" onclick="endWorkoutEarly()" class="flex-1 bg-error text-on-error py-sm rounded-lg font-h3 font-bold uppercase active:scale-95 transition-all">End</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SCREEN 4 — WORKOUT COMPLETE
+═══════════════════════════════════════════════════════════ -->
+<div id="screen-finish" class="screen hidden flex flex-col items-center justify-center min-h-screen px-margin">
+  <div class="text-center max-w-sm w-full">
+
+    <!-- Trophy -->
+    <div class="w-24 h-24 bg-primary-fixed/10 rounded-full border-2 border-primary-fixed flex items-center justify-center mx-auto mb-xl active-glow">
+      <span class="material-symbols-outlined text-primary-fixed" style="font-size: 48px; font-variation-settings: 'FILL' 1;">emoji_events</span>
+    </div>
+
+    <span id="finish-title" class="font-label-caps text-label-caps text-primary-fixed uppercase tracking-widest block mb-sm">Workout Complete</span>
+    <h1 id="finish-workout-name" class="font-h1 text-h1 uppercase mb-xl">—</h1>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 gap-md mb-xl">
+      <div class="glass-card p-md rounded-xl flex flex-col gap-xs">
+        <span id="finish-time-label" class="text-on-surface-variant font-label-caps text-label-caps uppercase">Time</span>
+        <span id="finish-time" class="font-data-display text-data-display text-primary-fixed">—</span>
+      </div>
+      <div class="glass-card p-md rounded-xl flex flex-col gap-xs">
+        <span id="finish-sets-label" class="text-on-surface-variant font-label-caps text-label-caps uppercase">Sets Done</span>
+        <span id="finish-sets" class="font-data-display text-data-display text-primary-fixed">—</span>
+      </div>
+    </div>
+
+    <button id="finish-back-btn" onclick="navigate('home')" class="w-full h-16 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center gap-md active:scale-95 transition-transform">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+      <span class="font-h3 text-h3 uppercase italic tracking-tighter">Back to Programs</span>
+    </button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     EXERCISE INFO MODAL
+═══════════════════════════════════════════════════════════ -->
+<div id="exercise-modal" class="hidden fixed inset-0 z-[200] flex items-end justify-center">
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeExerciseModal()"></div>
+
+  <!-- Sheet -->
+  <div class="relative w-full max-w-lg bg-surface-container rounded-t-2xl border-t border-surface-container-highest overflow-y-auto max-h-[92dvh]">
+
+    <!-- Handle -->
+    <div class="flex justify-center pt-sm pb-xs">
+      <div class="w-10 h-1 rounded-full bg-surface-container-highest"></div>
+    </div>
+
+    <!-- Header -->
+    <div class="px-margin pb-sm flex items-start justify-between gap-md">
+      <div>
+        <h2 id="modal-ex-name" class="font-h2 text-h2 uppercase text-primary leading-tight">—</h2>
+        <div id="modal-ex-tags" class="flex flex-wrap gap-xs mt-xs"></div>
+      </div>
+      <button onclick="closeExerciseModal()" class="text-on-surface-variant active:opacity-60 mt-1 flex-shrink-0">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- Exercise Hero Image -->
+    <div id="modal-anim-container"></div>
+
+    <!-- Body Map -->
+    <div class="px-margin mb-lg">
+      <div class="glass-card rounded-xl p-md">
+        <p id="modal-muscle-title" class="font-label-caps text-label-caps text-primary-fixed uppercase text-center mb-sm">Muscle Activation</p>
+        <div class="flex gap-md justify-center">
+          <!-- Front -->
+          <div class="flex-1 max-w-[100px]">
+            <p class="font-label-caps text-[9px] text-on-surface-variant text-center mb-xs uppercase">Front</p>
+            <svg viewBox="0 0 100 235" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+              <g fill="#181818" stroke="#282828" stroke-width="0.5">
+                <ellipse cx="50" cy="14" rx="12" ry="13"/>
+                <rect x="46" y="26" width="8" height="9" rx="3"/>
+                <path d="M30 42 Q50 38 70 42 L72 112 Q50 116 28 112 Z"/>
+                <rect x="16" y="44" width="14" height="64" rx="7"/>
+                <rect x="70" y="44" width="14" height="64" rx="7"/>
+                <rect x="13" y="108" width="12" height="46" rx="6"/>
+                <rect x="75" y="108" width="12" height="46" rx="6"/>
+                <rect x="29" y="113" width="16" height="115" rx="8"/>
+                <rect x="55" y="113" width="16" height="115" rx="8"/>
+              </g>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="f-shoulder-l" cx="23" cy="56" rx="10" ry="13"/>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="f-shoulder-r" cx="77" cy="56" rx="10" ry="13"/>
+              <path   class="muscle-group" data-map="mo" data-muscle="f-chest-l"    d="M30 44 Q49 42 49 74 Q38 76 30 67 Z"/>
+              <path   class="muscle-group" data-map="mo" data-muscle="f-chest-r"    d="M70 44 Q51 42 51 74 Q62 76 70 67 Z"/>
+              <rect   class="muscle-group" data-map="mo" data-muscle="f-abs"        x="44" y="75" width="12" height="35" rx="5"/>
+              <path   class="muscle-group" data-map="mo" data-muscle="f-oblique-l"  d="M30 67 L43 70 L42 110 L29 108 Z"/>
+              <path   class="muscle-group" data-map="mo" data-muscle="f-oblique-r"  d="M70 67 L57 70 L58 110 L71 108 Z"/>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="f-bicep-l"   cx="20" cy="77" rx="6" ry="14"/>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="f-bicep-r"   cx="80" cy="77" rx="6" ry="14"/>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="f-forearm-l" cx="18" cy="112" rx="5" ry="11"/>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="f-forearm-r" cx="82" cy="112" rx="5" ry="11"/>
+              <path   class="muscle-group" data-map="mo" data-muscle="f-quad-l"    d="M30 114 L45 114 L43 166 L29 164 Z"/>
+              <path   class="muscle-group" data-map="mo" data-muscle="f-quad-r"    d="M70 114 L55 114 L57 166 L71 164 Z"/>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="f-calf-l"   cx="36" cy="193" rx="8" ry="16"/>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="f-calf-r"   cx="64" cy="193" rx="8" ry="16"/>
+            </svg>
+          </div>
+          <!-- Back -->
+          <div class="flex-1 max-w-[100px]">
+            <p class="font-label-caps text-[9px] text-on-surface-variant text-center mb-xs uppercase">Back</p>
+            <svg viewBox="0 0 100 235" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+              <g fill="#181818" stroke="#282828" stroke-width="0.5">
+                <ellipse cx="50" cy="14" rx="12" ry="13"/>
+                <rect x="46" y="26" width="8" height="9" rx="3"/>
+                <path d="M30 42 Q50 38 70 42 L72 112 Q50 116 28 112 Z"/>
+                <rect x="16" y="44" width="14" height="64" rx="7"/>
+                <rect x="70" y="44" width="14" height="64" rx="7"/>
+                <rect x="13" y="108" width="12" height="46" rx="6"/>
+                <rect x="75" y="108" width="12" height="46" rx="6"/>
+                <rect x="29" y="113" width="16" height="115" rx="8"/>
+                <rect x="55" y="113" width="16" height="115" rx="8"/>
+              </g>
+              <path   class="muscle-group" data-map="mo" data-muscle="b-trap"         d="M36 42 Q50 38 64 42 L62 60 Q50 57 38 60 Z"/>
+              <path   class="muscle-group" data-map="mo" data-muscle="b-lat-l"        d="M30 58 L42 60 L40 102 L28 97 Z"/>
+              <path   class="muscle-group" data-map="mo" data-muscle="b-lat-r"        d="M70 58 L58 60 L60 102 L72 97 Z"/>
+              <rect   class="muscle-group" data-map="mo" data-muscle="b-lower-back"   x="42" y="90" width="16" height="22" rx="4"/>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="b-rear-delt-l" cx="22" cy="54" rx="9" ry="11"/>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="b-rear-delt-r" cx="78" cy="54" rx="9" ry="11"/>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="b-tricep-l"    cx="19" cy="76" rx="6" ry="14"/>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="b-tricep-r"    cx="81" cy="76" rx="6" ry="14"/>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="b-glute-l"     cx="37" cy="120" rx="10" ry="11"/>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="b-glute-r"     cx="63" cy="120" rx="10" ry="11"/>
+              <path   class="muscle-group" data-map="mo" data-muscle="b-hamstring-l" d="M29 130 L44 130 L42 175 L28 173 Z"/>
+              <path   class="muscle-group" data-map="mo" data-muscle="b-hamstring-r" d="M71 130 L56 130 L58 175 L72 173 Z"/>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="b-calf-l"      cx="36" cy="196" rx="8" ry="16"/>
+              <ellipse class="muscle-group" data-map="mo" data-muscle="b-calf-r"      cx="64" cy="196" rx="8" ry="16"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How To -->
+    <div class="px-margin mb-lg">
+      <h4 id="modal-how-title" class="font-h3 text-h3 uppercase border-l-4 border-primary-fixed pl-md mb-md">How To Perform</h4>
+      <div id="modal-how" class="space-y-sm"></div>
+    </div>
+
+    <!-- Tips -->
+    <div class="px-margin mb-xl">
+      <h4 id="modal-tips-title" class="font-h3 text-h3 uppercase border-l-4 border-secondary-container pl-md mb-md">Key Tips</h4>
+      <div id="modal-tips" class="space-y-sm"></div>
+    </div>
+
+    <!-- Bottom padding -->
+    <div class="h-8"></div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="workouts.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
