@@ -105,6 +105,7 @@ const UI = {
     backToPrograms:'Back to Programs',
     howToPerform:'How To Perform', keyTips:'Key Tips', muscleActivation:'Muscle Activation',
     set:(n)=>`SET ${n}`, bw:'BW',
+    navTraining:'Training', navPrograms:'Programs', navProgress:'Progress', navProfile:'Profile',
     switchLang:'🇮🇱',
   },
   he: {
@@ -133,6 +134,7 @@ const UI = {
     backToPrograms:'חזרה לתוכניות',
     howToPerform:'כיצד לבצע', keyTips:'טיפים מרכזיים', muscleActivation:'הפעלת שרירים',
     set:(n)=>`סט ${n}`, bw:'משקל גוף',
+    navTraining:'אימון', navPrograms:'תוכניות', navProgress:'התקדמות', navProfile:'פרופיל',
     switchLang:'🇺🇸',
   }
 };
@@ -466,6 +468,8 @@ function openExerciseModal(exerciseIndex) {
   document.getElementById('modal-how-title').textContent = t('howToPerform');
   document.getElementById('modal-tips-title').textContent = t('keyTips');
   document.getElementById('modal-muscle-title').textContent = t('muscleActivation');
+  document.getElementById('modal-label-front').textContent = t('front');
+  document.getElementById('modal-label-back').textContent = t('back');
   if (info) {
     document.getElementById('modal-how').innerHTML = info.how.map((s,i) =>
       `<div class="flex gap-sm items-start"><span class="w-6 h-6 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">${i+1}</span><span class="text-on-surface text-sm">${s}</span></div>`

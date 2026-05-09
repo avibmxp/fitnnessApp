@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.user
+*.swp
+*.swo
+*~
+
+# Claude Code (local settings only — CLAUDE.md is checked in)
+.claude/settings.local.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temp / serve cache
+.cache/
+node_modules/

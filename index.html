@@ -160,6 +160,7 @@
       background: none;
     }
     .lang-btn:hover { transform: scale(1.15); transition: transform 0.15s; }
+    [dir="rtl"] .rtl-mirror { transform: scaleX(-1); }
   </style>
 </head>
 <body class="bg-background text-on-surface font-body-md antialiased">
@@ -175,8 +176,6 @@
       <div class="font-h2 text-h2 font-black text-primary-fixed italic tracking-tighter">TITAN STRENGTH</div>
       <div class="flex gap-4 items-center">
         <button onclick="toggleLang()" class="lang-btn cursor-pointer" title="Switch language">🇮🇱</button>
-        <span class="material-symbols-outlined text-primary-fixed cursor-pointer">notifications</span>
-        <span class="material-symbols-outlined text-primary-fixed cursor-pointer">account_circle</span>
       </div>
     </div>
   </header>
@@ -213,19 +212,19 @@
   <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-gutter bg-surface-container border-t border-surface-variant">
     <a class="flex flex-col items-center justify-center text-primary-fixed font-bold gap-1" href="#">
       <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
-      <span class="font-label-caps text-label-caps uppercase">Training</span>
+      <span data-i18n="navTraining" class="font-label-caps text-label-caps uppercase">Training</span>
     </a>
     <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1" href="#">
       <span class="material-symbols-outlined">format_list_bulleted</span>
-      <span class="font-label-caps text-label-caps uppercase">Programs</span>
+      <span data-i18n="navPrograms" class="font-label-caps text-label-caps uppercase">Programs</span>
     </a>
     <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1" href="#">
       <span class="material-symbols-outlined">insights</span>
-      <span class="font-label-caps text-label-caps uppercase">Progress</span>
+      <span data-i18n="navProgress" class="font-label-caps text-label-caps uppercase">Progress</span>
     </a>
     <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1" href="#">
       <span class="material-symbols-outlined">person</span>
-      <span class="font-label-caps text-label-caps uppercase">Profile</span>
+      <span data-i18n="navProfile" class="font-label-caps text-label-caps uppercase">Profile</span>
     </a>
   </nav>
 </div>
@@ -240,14 +239,12 @@
   <header class="bg-surface sticky top-0 z-50 flex justify-between items-center w-full px-margin h-16 max-w-7xl mx-auto">
     <div class="flex items-center gap-xs">
       <button onclick="navigate('home')" class="text-on-surface-variant active:opacity-80 transition-opacity">
-        <span class="material-symbols-outlined">arrow_back</span>
+        <span class="material-symbols-outlined rtl-mirror">arrow_back</span>
       </button>
       <span class="font-h2 text-h2 font-black text-primary-fixed italic tracking-tighter">TITAN STRENGTH</span>
     </div>
     <div class="flex items-center gap-md">
       <button onclick="toggleLang()" class="lang-btn cursor-pointer" title="Switch language">🇮🇱</button>
-      <span class="material-symbols-outlined text-primary-fixed">notifications</span>
-      <span class="material-symbols-outlined text-primary-fixed">account_circle</span>
     </div>
   </header>
 
@@ -575,7 +572,7 @@
         <div class="flex gap-md justify-center">
           <!-- Front -->
           <div class="flex-1 max-w-[100px]">
-            <p class="font-label-caps text-[9px] text-on-surface-variant text-center mb-xs uppercase">Front</p>
+            <p id="modal-label-front" class="font-label-caps text-[9px] text-on-surface-variant text-center mb-xs uppercase">Front</p>
             <svg viewBox="0 0 100 235" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
               <g fill="#181818" stroke="#282828" stroke-width="0.5">
                 <ellipse cx="50" cy="14" rx="12" ry="13"/>
@@ -607,7 +604,7 @@
           </div>
           <!-- Back -->
           <div class="flex-1 max-w-[100px]">
-            <p class="font-label-caps text-[9px] text-on-surface-variant text-center mb-xs uppercase">Back</p>
+            <p id="modal-label-back" class="font-label-caps text-[9px] text-on-surface-variant text-center mb-xs uppercase">Back</p>
             <svg viewBox="0 0 100 235" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
               <g fill="#181818" stroke="#282828" stroke-width="0.5">
                 <ellipse cx="50" cy="14" rx="12" ry="13"/>
