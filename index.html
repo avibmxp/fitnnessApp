@@ -158,9 +158,93 @@
       text-align: left;
     }
     .rtl-mirror { transform: scaleX(-1); }
+
+    /* ── Splash screen ── */
+    #splash-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #131313;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+    #splash-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .splash-watermark {
+      -webkit-text-stroke: 1px rgba(195, 244, 0, 0.03);
+      color: transparent;
+      user-select: none;
+    }
+    #splash-bar-fill {
+      height: 100%;
+      background: #c3f400;
+      box-shadow: 0 0 15px rgba(195,244,0,0.5);
+      width: 0%;
+      transition: width 0.1s linear;
+    }
   </style>
 </head>
 <body class="bg-background text-on-surface font-body-md antialiased">
+
+<!-- ══════════════════════════════════════════════════════════
+     SPLASH SCREEN
+═══════════════════════════════════════════════════════════ -->
+<div id="splash-screen">
+  <!-- Background watermark -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none" style="z-index:0">
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-15deg) scale(1.5)">
+      <span class="splash-watermark font-h1 font-black" style="font-size:18vw;line-height:1;white-space:nowrap">TITAN STRENGTH</span>
+    </div>
+    <div style="position:absolute;inset:0;background:radial-gradient(at 0% 0%,rgba(195,244,0,0.05) 0,transparent 50%),radial-gradient(at 100% 100%,rgba(195,244,0,0.05) 0,transparent 50%)"></div>
+  </div>
+
+  <!-- Main content -->
+  <main style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;max-width:480px;padding:0 20px">
+    <!-- Logo icon -->
+    <div style="margin-bottom:32px;position:relative">
+      <div style="width:128px;height:128px;border-radius:9999px;border:4px solid #c3f400;display:flex;align-items:center;justify-content:center">
+        <span class="material-symbols-outlined" style="color:#c3f400;font-size:64px;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48">fitness_center</span>
+      </div>
+      <div style="position:absolute;inset:0;background:#c3f400;filter:blur(48px);opacity:0.15;border-radius:9999px"></div>
+    </div>
+
+    <!-- Brand name -->
+    <h1 style="font-family:'Montserrat',sans-serif!important;font-size:40px;line-height:1.1;letter-spacing:-0.02em;font-weight:900;font-style:italic;color:#fff;text-transform:uppercase;margin:0 0 8px">
+      TITAN <span style="color:#c3f400">STRENGTH</span>
+    </h1>
+
+    <!-- Hebrew tagline -->
+    <p style="font-family:'Heebo',sans-serif!important;font-size:24px;font-weight:700;color:rgba(195,244,0,0.8);margin:0 0 32px">עוצמה בכל תנועה</p>
+
+    <!-- Athlete image -->
+    <div style="width:100%;height:192px;border-radius:12px;overflow:hidden;border:1px solid #353534;position:relative;margin-bottom:0">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP2OXUCGsHW9URgTyuP2eGEdKA-jyuL4M8enNkVmtDuaBmyfCTqo-YqP5blQJz6uWFFSQM1DnkeuJlE4J4NxnYcVuZBuPiwo8kuiyt_8ACGLT_qyjl4-VAVaRkph9eFWyq3y2CM9LpP0zwGsh1WNmJbagtE3QqNFwCe1CafUHBRwTMWP9p2funQPExOvpMQbXHSVjfVgbEhxPiZP3nSgnCNvH6tm8V6PEWIy15UXsIBVm8ylymKuhaK0xYRogZ_Kl8wMyVI7Hz0v8"
+           alt="Athlete" style="width:100%;height:100%;object-fit:cover;opacity:0.6;mix-blend-mode:luminosity"/>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,19,19,0) 0%,rgba(19,19,19,1) 100%)"></div>
+    </div>
+  </main>
+
+  <!-- Bottom progress bar -->
+  <footer style="position:fixed;bottom:0;left:0;width:100%;padding:0 20px 32px;z-index:2;display:flex;flex-direction:column;align-items:center">
+    <div style="width:100%;max-width:480px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:8px">
+        <span id="splash-label" style="font-family:'Inter',sans-serif;font-size:12px;letter-spacing:0.1em;font-weight:700;color:#c3f400;text-transform:uppercase">Initializing Systems</span>
+        <span id="splash-pct" style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:#c3f400">0%</span>
+      </div>
+      <div style="width:100%;height:4px;background:#353534;overflow:hidden;border-radius:2px">
+        <div id="splash-bar-fill"></div>
+      </div>
+    </div>
+    <div style="margin-top:24px">
+      <p style="font-family:'Inter',sans-serif;font-size:12px;letter-spacing:0.2em;font-weight:700;color:rgba(197,201,172,0.4);text-transform:uppercase">Elite Performance Protocol v4.0.2</p>
+    </div>
+  </footer>
+</div>
 
 <!-- ══════════════════════════════════════════════════════════
      SCREEN 1 — HOME / SELECT PLAN
@@ -192,19 +276,19 @@
 
   <!-- Bottom Nav -->
   <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-gutter bg-surface-container border-t border-surface-variant">
-    <a class="flex flex-col items-center justify-center text-primary-fixed font-bold gap-1" href="#">
-      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+    <a id="nav-btn-training" onclick="navigate('home'); return false;" class="flex flex-col items-center justify-center text-primary-fixed font-bold gap-1 cursor-pointer" href="#">
+      <span id="nav-icon-training" class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
       <span data-i18n="navTraining" class="font-label-caps text-label-caps uppercase">אימון</span>
     </a>
-    <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1" href="#">
-      <span class="material-symbols-outlined">format_list_bulleted</span>
+    <a id="nav-btn-programs" onclick="navigate('home'); return false;" class="flex flex-col items-center justify-center text-on-surface-variant gap-1 cursor-pointer" href="#">
+      <span id="nav-icon-programs" class="material-symbols-outlined">format_list_bulleted</span>
       <span data-i18n="navPrograms" class="font-label-caps text-label-caps uppercase">תוכניות</span>
     </a>
-    <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1" href="#">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 opacity-40 pointer-events-none" href="#">
       <span class="material-symbols-outlined">insights</span>
       <span data-i18n="navProgress" class="font-label-caps text-label-caps uppercase">התקדמות</span>
     </a>
-    <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1" href="#">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 opacity-40 pointer-events-none" href="#">
       <span class="material-symbols-outlined">person</span>
       <span data-i18n="navProfile" class="font-label-caps text-label-caps uppercase">פרופיל</span>
     </a>
@@ -510,6 +594,14 @@
       <div class="glass-card p-md rounded-xl flex flex-col gap-xs">
         <span id="finish-sets-label" class="text-on-surface-variant font-label-caps text-label-caps uppercase">סטים</span>
         <span id="finish-sets" class="font-data-display text-data-display text-primary-fixed">—</span>
+      </div>
+      <div class="glass-card p-md rounded-xl flex flex-col gap-xs">
+        <span id="finish-volume-label" class="text-on-surface-variant font-label-caps text-label-caps uppercase">נפח כולל</span>
+        <span id="finish-volume" class="font-data-display text-data-display text-primary-fixed">—<span class="text-h3 font-h3 mr-1 normal-case">ק"ג</span></span>
+      </div>
+      <div class="glass-card p-md rounded-xl flex flex-col gap-xs">
+        <span id="finish-best-label" class="text-on-surface-variant font-label-caps text-label-caps uppercase">הרמה הכבדה</span>
+        <span id="finish-best" class="font-data-display text-data-display text-primary-fixed">—</span>
       </div>
     </div>
 

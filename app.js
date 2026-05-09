@@ -366,6 +366,7 @@ const UI = {
   endMsg:'ההתקדמות שלך תישמר. האם אתה בטוח שברצונך לסיים?',
   cancel:'ביטול', end:'סיים',
   workoutComplete:'האימון הושלם!', time:'זמן', setsDone:'סטים',
+  totalVolume:'נפח כולל', bestLift:'הרמה הכבדה',
   backToPrograms:'חזרה לתוכניות',
   howToPerform:'כיצד לבצע', keyTips:'טיפים מרכזיים', muscleActivation:'הפעלת שרירים',
   set:(n)=>`סט ${n}`, bw:'משקל גוף',
@@ -407,6 +408,22 @@ function navigate(screen) {
   document.getElementById('screen-' + screen).classList.remove('hidden');
   state.currentScreen = screen;
   window.scrollTo(0, 0);
+  updateBottomNav(screen);
+}
+
+function updateBottomNav(screen) {
+  const trainingBtn = document.getElementById('nav-btn-training');
+  const programsBtn = document.getElementById('nav-btn-programs');
+  const trainingIcon = document.getElementById('nav-icon-training');
+  const programsIcon = document.getElementById('nav-icon-programs');
+  if (!trainingBtn) return;
+
+  const onHome = screen === 'home';
+  trainingBtn.className = 'flex flex-col items-center justify-center gap-1 cursor-pointer font-bold ' +
+    (onHome ? 'text-primary-fixed' : 'text-on-surface-variant');
+  trainingIcon.style.fontVariationSettings = onHome ? "'FILL' 1" : "'FILL' 0";
+  programsBtn.className = 'flex flex-col items-center justify-center gap-1 cursor-pointer ' +
+    'text-on-surface-variant';
 }
 
 // ─── Screen 1: Home ───────────────────────────────────────────────────────────
@@ -906,6 +923,21 @@ function finishWorkout() {
   document.getElementById('finish-time').textContent = formatElapsed(elapsed);
   document.getElementById('finish-sets').textContent = state.completedSets.length;
   document.getElementById('finish-workout-name').textContent = tW(state.currentWorkout,'name').toUpperCase();
+
+  const totalVolume = state.completedSets.reduce((sum, s) => {
+    return sum + (parseFloat(s.weight) || 0) * (parseFloat(s.reps) || 0);
+  }, 0);
+  const bestSet = state.completedSets.reduce((best, s) =>
+    (parseFloat(s.weight) || 0) > (parseFloat(best?.weight) || 0) ? s : best, null);
+
+  document.getElementById('finish-volume-label').textContent = t('totalVolume');
+  document.getElementById('finish-best-label').textContent = t('bestLift');
+  document.getElementById('finish-volume').innerHTML =
+    `${Math.round(totalVolume).toLocaleString()}<span class="text-h3 font-h3 mr-1 normal-case">ק"ג</span>`;
+  document.getElementById('finish-best').textContent = bestSet
+    ? `${parseFloat(bestSet.weight)}×${bestSet.reps}`
+    : '—';
+
   navigate('finish');
 }
 
@@ -990,10 +1022,54 @@ function confirmEndWorkout() {
 function cancelEndWorkout() { document.getElementById('end-workout-modal').classList.add('hidden'); }
 function endWorkoutEarly() { cancelEndWorkout(); finishWorkout(); }
 
+// ─── Splash screen ─────────────────────────────────────────────────────────────
+function runSplashScreen(onDone) {
+  const splash = document.getElementById('splash-screen');
+  const bar    = document.getElementById('splash-bar-fill');
+  const pct    = document.getElementById('splash-pct');
+  if (!splash) { onDone(); return; }
+
+  // Keyframes matching the CSS animation
+  const stops = [0, 22, 51, 74, 88, 100];
+  const times = [0, 480, 1080, 1680, 2112, 2400]; // ms
+  let start = null;
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function tick(ts) {
+    if (!start) start = ts;
+    const elapsed = ts - start;
+    let progress = 0;
+    for (let i = 1; i < times.length; i++) {
+      if (elapsed <= times[i]) {
+        const t = (elapsed - times[i-1]) / (times[i] - times[i-1]);
+        progress = lerp(stops[i-1], stops[i], Math.min(t, 1));
+        break;
+      }
+    }
+    if (elapsed >= times[times.length - 1]) progress = 100;
+
+    bar.style.width = progress + '%';
+    pct.textContent = Math.round(progress) + '%';
+
+    if (progress < 100) {
+      requestAnimationFrame(tick);
+    } else {
+      setTimeout(() => {
+        splash.classList.add('fade-out');
+        setTimeout(() => { splash.remove(); onDone(); }, 650);
+      }, 300);
+    }
+  }
+
+  requestAnimationFrame(tick);
+}
+
 // ─── Init ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderHomeScreen();
   navigate('home');
+  runSplashScreen(() => {});
 
   // Horizontal scroll via mouse wheel on filter slider (legacy — kept for safety)
   const slider = document.querySelector('.filter-slider');
